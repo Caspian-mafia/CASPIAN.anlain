@@ -87,6 +87,7 @@ router.post('/rooms/:id/join',asyncRoute(async(req,res)=>{
   const invite=(await db.query('SELECT id,max_uses,uses_count,expires_at,revoked_at FROM caspian_birthday_room_invites WHERE birthday_room_id=$1 AND code_hash=$2 FOR UPDATE',[id,hash(code)])).rows[0];
   if(!invite||invite.revoked_at||new Date(invite.expires_at).getTime()<=Date.now()||(invite.max_uses!==null&&invite.uses_count>=invite.max_uses))return {status:403,error:'کد دعوت نامعتبر، منقضی یا تمام‌شده است'};
   await db.query("INSERT INTO caspian_birthday_room_participants(birthday_room_id,user_id,member_role) VALUES($1,$2,'guest') ON CONFLICT DO NOTHING",[id,req.user.id]);
+  await db.query("UPDATE caspian_birthday_room_sessions SET status='active',updated_at=NOW() WHERE id=$1 AND status='open'",[id]);
   await db.query('UPDATE caspian_birthday_room_invites SET uses_count=uses_count+1 WHERE id=$1',[invite.id]);
   return {status:200,ok:true,joined:true};
  });
@@ -118,6 +119,14 @@ router.get('/rooms/:id/gifts',asyncRoute(async(req,res)=>{
  const {rows}=await store.query('SELECT g.id,g.sender_user_id AS "senderUserId",s.display_name AS "senderName",g.recipient_user_id AS "recipientUserId",r.display_name AS "recipientName",g.cosmetic_id AS "cosmeticId",c.name AS "cosmeticName",c.category,g.created_at AS "createdAt" FROM caspian_birthday_room_gift_deliveries g JOIN caspian_users s ON s.id=g.sender_user_id JOIN caspian_users r ON r.id=g.recipient_user_id JOIN caspian_cosmetics c ON c.id=g.cosmetic_id WHERE g.birthday_room_id=$1 ORDER BY g.created_at DESC',[id]);
  res.json({gifts:rows});
 }));
+
+router.get('/rooms/:id/messages',asyncRoute(async(req,res)=>{
+ const id=req.params.id;if(!uuid.test(id))return res.status(400).json({error:'شناسه اتاق معتبر نیست'});
+ if(!await member(store,id,req.user.id))return res.status(404).json({error:'اتاق پیدا نشد یا دسترسی ندارید'});
+ const {rows}=await store.query('SELECT m.id,m.sender_user_id AS "senderUserId",u.display_name AS "senderName",m.body,m.created_at AS "createdAt" FROM caspian_birthday_room_messages m JOIN caspian_users u ON u.id=m.sender_user_id WHERE m.birthday_room_id=$1 ORDER BY m.created_at DESC LIMIT 50',[id]);
+ res.json({messages:rows.reverse()});
+}));
+
 router.post('/rooms/:id/close',asyncRoute(async(req,res)=>{
  const id=req.params.id;if(!uuid.test(id))return res.status(400).json({error:'شناسه اتاق معتبر نیست'});
  const result=await store.withTransaction(async db=>{
@@ -130,6 +139,7 @@ router.post('/rooms/:id/close',asyncRoute(async(req,res)=>{
   await db.query('UPDATE caspian_birthday_room_invites SET revoked_at=NOW() WHERE birthday_room_id=$1 AND revoked_at IS NULL',[id]);
   return {status:200,ok:true,closed:true};
  });
+ if(result.ok)req.app.get('io')?.to('birthday:'+req.params.id).emit('birthday:closed',{roomId:req.params.id});
  res.status(result.status).json(result);
 }));
 router.use((err,req,res,next)=>{console.error('CASPIAN birthday API error:',err.message);if(!res.headersSent)res.status(500).json({error:'خطای داخلی اتاق تولد'});});
