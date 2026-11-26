@@ -119,8 +119,10 @@ io.on('connection',socket=>{
  });
  socket.on('birthday:chat:send',async({roomId,message}={},cb)=>{
   try{
-   const body=String(message||'').trim();
+   const body=String(message||'').trim(),now=Date.now();
    if(!socket.data.birthdayUserId||!socket.data.birthdayRoomIds?.has(roomId)||body.length<1||body.length>500)return cb?.({ok:false,error:'پیام خالی یا بیش از ۵۰۰ نویسه است'});
+   if(now-(socket.data.lastBirthdayMessageAt||0)<750)return cb?.({ok:false,error:'برای ارسال پیام بعدی کمی صبر کن'});
+   socket.data.lastBirthdayMessageAt=now;
    const {rows}=await store.query("INSERT INTO caspian_birthday_room_messages(birthday_room_id,sender_user_id,body) SELECT s.id,$2,$3 FROM caspian_birthday_room_sessions s JOIN caspian_birthday_room_participants p ON p.birthday_room_id=s.id AND p.user_id=$2 WHERE s.id=$1 AND s.status IN ('open','active') RETURNING id,body,created_at",[roomId,socket.data.birthdayUserId,body]);
    if(!rows[0])return cb?.({ok:false,error:'اتاق بسته شده یا عضویت شما معتبر نیست'});
    const item={id:rows[0].id,roomId,senderUserId:socket.data.birthdayUserId,senderName:socket.data.birthdayDisplayName,body:rows[0].body,createdAt:rows[0].created_at};
