@@ -1,0 +1,28 @@
+name: Deploy CASPIAN server to Railway
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    container: ghcr.io/railwayapp/cli:latest
+    env:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      RAILWAY_SERVICE_NAME: ${{ vars.RAILWAY_SERVICE_NAME }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Railway configuration
+        shell: bash
+        run: |
+          test -n "$RAILWAY_TOKEN" || { echo "Missing repository secret RAILWAY_TOKEN"; exit 1; }
+          test -n "$RAILWAY_SERVICE_NAME" || { echo "Missing repository variable RAILWAY_SERVICE_NAME (use caspian-mafia-game)"; exit 1; }
+          test -f railway.json
+          test -f package.json
+      - name: Deploy server
+        shell: bash
+        run: railway up --ci --service "$RAILWAY_SERVICE_NAME"
