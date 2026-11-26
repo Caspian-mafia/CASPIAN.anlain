@@ -157,3 +157,31 @@ CREATE TABLE IF NOT EXISTS caspian_birthday_room_invites (
 );
 CREATE INDEX IF NOT EXISTS caspian_birthday_room_invites_room_idx
   ON caspian_birthday_room_invites(birthday_room_id,created_at DESC);
+
+
+-- Operational birthday-room membership, layout settings and transferable gifts.
+ALTER TABLE caspian_birthday_room_sessions
+  ADD COLUMN IF NOT EXISTS room_settings JSONB NOT NULL DEFAULT '{"layout":"circle","guestCount":8}'::jsonb;
+
+CREATE TABLE IF NOT EXISTS caspian_birthday_room_participants (
+  birthday_room_id UUID NOT NULL REFERENCES caspian_birthday_room_sessions(id) ON DELETE CASCADE,
+  user_id UUID NOT NULL REFERENCES caspian_users(id) ON DELETE CASCADE,
+  member_role VARCHAR(12) NOT NULL DEFAULT 'guest' CHECK (member_role IN ('owner','honoree','guest')),
+  joined_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  PRIMARY KEY(birthday_room_id,user_id)
+);
+CREATE INDEX IF NOT EXISTS caspian_birthday_room_participants_user_idx
+  ON caspian_birthday_room_participants(user_id,joined_at DESC);
+
+CREATE TABLE IF NOT EXISTS caspian_birthday_room_gift_deliveries (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  birthday_room_id UUID NOT NULL REFERENCES caspian_birthday_room_sessions(id) ON DELETE CASCADE,
+  sender_user_id UUID NOT NULL REFERENCES caspian_users(id),
+  recipient_user_id UUID NOT NULL REFERENCES caspian_users(id),
+  cosmetic_id VARCHAR(64) NOT NULL REFERENCES caspian_cosmetics(id),
+  gift_status VARCHAR(12) NOT NULL DEFAULT 'delivered' CHECK (gift_status IN ('delivered','cancelled')),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  CHECK (sender_user_id <> recipient_user_id)
+);
+CREATE INDEX IF NOT EXISTS caspian_birthday_room_gifts_room_idx
+  ON caspian_birthday_room_gift_deliveries(birthday_room_id,created_at DESC);
