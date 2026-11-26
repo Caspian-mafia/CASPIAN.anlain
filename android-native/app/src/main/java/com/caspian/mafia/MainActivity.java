@@ -1,3 +1,4 @@
+// Online-only Android shell: all gameplay and persistence are served by the central HTTPS backend.
 package com.caspian.mafia;
 import android.app.Activity;
 import android.content.Intent;
