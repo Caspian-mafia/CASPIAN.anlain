@@ -80,10 +80,13 @@ router.post('/rooms/:id/join',asyncRoute(async(req,res)=>{
  const id=req.params.id,code=String(req.body?.inviteCode||'');
  if(!uuid.test(id)||!/^[A-Za-z0-9_-]{24,64}$/.test(code))return res.status(400).json({error:'کد دعوت معتبر نیست'});
  const result=await store.withTransaction(async db=>{
-  const room=(await db.query('SELECT id,status FROM caspian_birthday_room_sessions WHERE id=$1 FOR UPDATE',[id])).rows[0];
+  const room=(await db.query('SELECT id,status,room_settings FROM caspian_birthday_room_sessions WHERE id=$1 FOR UPDATE',[id])).rows[0];
   if(!room||!['open','active'].includes(room.status))return {status:404,error:'اتاق تولد در دسترس نیست'};
   const existing=await db.query('SELECT 1 FROM caspian_birthday_room_participants WHERE birthday_room_id=$1 AND user_id=$2',[id,req.user.id]);
   if(existing.rows.length)return {status:200,ok:true,alreadyJoined:true};
+  const guestLimit=Math.max(2,Math.min(16,Number(room.room_settings?.guestCount)||8));
+  const guestCount=await db.query("SELECT COUNT(*)::int AS count FROM caspian_birthday_room_participants WHERE birthday_room_id=$1 AND member_role='guest'",[id]);
+  if(guestCount.rows[0].count>=guestLimit)return {status:409,error:'ظرفیت مهمانان این اتاق تکمیل شده است',guestLimit};
   const invite=(await db.query('SELECT id,max_uses,uses_count,expires_at,revoked_at FROM caspian_birthday_room_invites WHERE birthday_room_id=$1 AND code_hash=$2 FOR UPDATE',[id,hash(code)])).rows[0];
   if(!invite||invite.revoked_at||new Date(invite.expires_at).getTime()<=Date.now()||(invite.max_uses!==null&&invite.uses_count>=invite.max_uses))return {status:403,error:'کد دعوت نامعتبر، منقضی یا تمام‌شده است'};
   await db.query("INSERT INTO caspian_birthday_room_participants(birthday_room_id,user_id,member_role) VALUES($1,$2,'guest') ON CONFLICT DO NOTHING",[id,req.user.id]);
