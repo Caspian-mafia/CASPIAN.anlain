@@ -5,6 +5,7 @@ const R=require('./rules-engine');
 const store=require('./persistence');
 const platform=require('./platform');
 const app=express(),server=http.createServer(app),io=new Server(server);
+app.set('io',io);
 app.use((req,res,next)=>{res.setHeader('Access-Control-Allow-Origin','*');res.setHeader('Access-Control-Allow-Headers','Authorization, Content-Type');res.setHeader('Access-Control-Allow-Methods','GET, POST, PATCH, OPTIONS');if(req.method==='OPTIONS')return res.sendStatus(204);next();});app.use(express.json({limit:'32kb'}));app.use('/api',platform.router);app.use(express.static('public'));
 const rooms=new Map(),makeCode=()=>crypto.randomBytes(3).toString('hex').toUpperCase();
 const cleanName=v=>String(v||'بازیکن').trim().slice(0,20)||'بازیکن';
