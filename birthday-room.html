@@ -34,16 +34,16 @@ input[type=range]{padding:0;accent-color:#d8b36b}
 @media(max-width:560px){main{padding:12px}.stage{min-height:330px}.arch{inset:30px 3% 70px}.throne{margin-top:18px}.title{padding-top:38px}}
 </style></head>
 <body><main>
-<header class="head"><div><div class="brand">♛ CASPIAN</div><div class="sub">تالار اختصاصی جشن تولد</div></div><span class="pill">پیش‌نمایش تعاملی</span></header>
+<header class="head"><div><div class="brand">♛ CASPIAN</div><div class="sub">تالار اختصاصی جشن تولد</div></div><span class="pill">پیش‌نمایش متصل به حساب</span></header>
 <section class="stage" id="stage"><div class="arch"></div><div class="title"><div class="crown">♛</div><div id="sceneTitle">امپراتوری بنفش</div></div><div class="throne"><strong id="honoree">ستاره جشن</strong><small>جایگاه ویژه صاحب جشن</small></div><div class="guestline"><span class="guest">مهمان ویژه</span><span class="guest">دوستان</span><span class="guest">خانواده</span></div><div class="water"></div></section>
 <section class="panel"><h2>۱. انتخاب سبک محیط</h2><div class="families" id="families"><button class="active" data-family="0">قصرهای شناور در فضا</button><button data-family="1">قصر طلایی و آبشارها</button><button data-family="2">تالار کیهانی سلطنتی</button></div><div class="themegrid" id="themes"></div></section>
-<section class="panel"><h2>۲. شخص اصلی و چیدمان جشن</h2><div class="controls"><div><label for="person">نام فردی که جشن برای اوست</label><input id="person" maxlength="30" value="ستاره جشن"></div><div><label>چیدمان مهمانان</label><div class="arrangements"><button class="active">دایره‌ای</button><button>نیم‌دایره</button><button>پلکانی</button><button>دوطرفه</button></div></div></div></section>
+<section class="panel"><h2>۲. شخص اصلی و چیدمان جشن</h2><div class="controls"><div><label for="person">نام نمایشی فردی که جشن برای اوست</label><input id="person" maxlength="30" value="ستاره جشن"></div><div><label for="honoreeId">شناسه حساب فرد اصلی (UUID)</label><input id="honoreeId" placeholder="شناسه حساب را از پروفایل کپی کنید"></div><div><label for="guestCount">تعداد مهمانان</label><select id="guestCount"><option value="2" >2 نفر</option><option value="3" >3 نفر</option><option value="4" >4 نفر</option><option value="5" >5 نفر</option><option value="6" >6 نفر</option><option value="7" >7 نفر</option><option value="8" selected>8 نفر</option><option value="9" >9 نفر</option><option value="10" >10 نفر</option><option value="11" >11 نفر</option><option value="12" >12 نفر</option><option value="13" >13 نفر</option><option value="14" >14 نفر</option><option value="15" >15 نفر</option><option value="16" >16 نفر</option></select></div><div><label>چیدمان مهمانان</label><div class="arrangements"><button class="active" data-layout="circle">دایره‌ای</button><button data-layout="semicircle">نیم‌دایره</button><button data-layout="staggered">پلکانی</button><button data-layout="two-sided">دوطرفه</button></div></div></div></section>
 <section class="panel"><h2>۳. موسیقی و صدای جشن</h2><p class="note">نمونه صوتی در این پیش‌نمایش با سنتز صدای ساده و بدون فایل آهنگ دارای حق نشر ساخته می‌شود. نسخه‌های نهایی استودیویی باید جداگانه تولید و مجوزدهی شوند.</p><div class="controls">
 <div><label>انتخاب موسیقی</label><select id="music"><option value="birthday">موسیقی تولد CASPIAN — ملودی اصلی</option><option value="grand">تولد باشکوه — ارکسترال نمایشی</option><option value="happy">جشن شاد و پرانرژی</option><option value="calm">لحظه احساسی و آرام</option><option value="arrival">ورود ویژه و تبریک کوتاه</option><option value="ambient">موسیقی محیطی کیهانی</option></select></div>
 <div><label>صدای موسیقی <span id="volLabel">۳۵٪</span></label><input id="volume" type="range" min="0" max="100" value="35"></div>
 <div><label>کنترل پخش</label><div class="row"><button id="play">▶ پخش نمونه</button><button id="stop">■ توقف</button></div></div>
 </div></section>
-<p class="note">این صفحه یک نمونه تعاملی سمت مرورگر است؛ هنوز به حساب کاربری، اتاق آنلاین، کیف پول یا سرور CASPIAN متصل نیست. هیچ هزینه یا هدیه واقعی در این پیش‌نمایش اعمال نمی‌شود.</p>
+<section class="panel"><h2>۴. اتصال واقعی به اتاق تولد</h2><p class="note">برای ساخت اتاق باید وارد حساب CASPIAN شده باشید. فقط صاحب اتاق ۲۰٬۰۰۰ سکه می‌پردازد؛ مهمانان با کد دعوت رایگان وارد می‌شوند. کد دعوت فقط هنگام صدور نمایش داده می‌شود.</p><div class="controls"><div><label for="joinRoomId">شناسه اتاق برای ورود مهمان</label><input id="joinRoomId" placeholder="شناسه اتاق"></div><div><label for="joinInviteCode">کد دعوت</label><input id="joinInviteCode" placeholder="کد دعوت خصوصی"></div></div><div class="row" style="margin-top:12px"><button id="createBirthdayRoom">ساخت اتاق و پرداخت ۲۰٬۰۰۰ سکه</button><button id="joinBirthdayRoom">ورود با کد دعوت</button></div><div id="roomTools" hidden><p class="note">اتاق فعال: <strong id="activeRoomCode"></strong></p><label>کد دعوت مهمانان</label><input id="activeInviteCode" readonly><div class="row"><button id="newBirthdayInvite">صدور کد جدید و باطل‌کردن کد قبلی</button><button id="copyBirthdayInvite">کپی کد دعوت</button><button id="closeBirthdayRoom">بستن اتاق</button></div><h2 style="margin-top:16px">ارسال هدیه از دارایی‌های خودت</h2><div class="controls"><div><label for="giftRecipient">شناسه حساب گیرنده (باید عضو اتاق باشد)</label><input id="giftRecipient" placeholder="شناسه حساب گیرنده"></div><div><label for="giftCosmetic">شناسه آواتور یا قاب متعلق به شما</label><input id="giftCosmetic" placeholder="مثلاً frame-starter یا avatar-..."></div></div><button id="sendBirthdayGift" style="margin-top:10px">انتقال هدیه</button></div><p id="apiStatus" class="note" role="status" aria-live="polite">وضعیت اتصال هنوز بررسی نشده است.</p></section>
 </main>
 <script>
 const data=[
@@ -51,17 +51,54 @@ const data=[
 [{n:"سلطنت طلایی",d:"ستون طلایی و فرش سلطنتی",c:"#f1c56f"},{n:"آبشار یخی",d:"آبشار آبی و کریستال یخ",c:"#65dcff"},{n:"باغ زمرد",d:"گیاهان جادویی و آب‌نما",c:"#64d6a1"},{n:"شب آتش و طلا",d:"مشعل جادویی و نور گرم",c:"#ff9c55"},{n:"قصر رزگلد",d:"گل‌های صورتی و نور گرم",c:"#f49ac2"}],
 [{n:"شب الماس",d:"لوستر کریستالی و کف آینه‌ای",c:"#c9e6ff"},{n:"ماسک طلایی",d:"نقاب مجلل و پرده مخمل",c:"#eac36d"},{n:"مهمانی ستارگان",d:"سقف کهکشانی و سیاره شناور",c:"#a78aff"},{n:"شب بنفش سلطنتی",d:"پرده بنفش و تاج طلایی",c:"#b47aff"},{n:"پروانه‌های نورانی",d:"پروانه درخشان و گل‌آرایی",c:"#f3a4d2"}]
 ];
-let family=0,ctx=null,voices=[],timer=null,step=0;
+let family=0,ctx=null,voices=[],timer=null,step=0,layout="circle",selectedTheme="birthday-theme-0-0",activeBirthdayRoomId=sessionStorage.getItem("caspianBirthdayRoomId")||"";
 const stage=document.getElementById("stage"),themes=document.getElementById("themes");
-function render(){themes.innerHTML="";data[family].forEach((t,i)=>{const b=document.createElement("button");b.className="theme"+(i===0?" active":"");b.innerHTML="<b>"+t.n+"</b><small>"+t.d+"</small>";b.onclick=()=>{document.querySelectorAll(".theme").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById("sceneTitle").textContent=t.n;stage.style.setProperty("--glow",t.c)};themes.appendChild(b)});const t=data[family][0];document.getElementById("sceneTitle").textContent=t.n;stage.style.setProperty("--glow",t.c)}
+function render(){themes.innerHTML="";data[family].forEach((t,i)=>{const b=document.createElement("button");b.className="theme"+(i===0?" active":"");b.innerHTML="<b>"+t.n+"</b><small>"+t.d+"</small>";b.onclick=()=>{document.querySelectorAll(".theme").forEach(x=>x.classList.remove("active"));b.classList.add("active");selectedTheme="birthday-theme-"+family+"-"+i;document.getElementById("sceneTitle").textContent=t.n;stage.style.setProperty("--glow",t.c)};themes.appendChild(b)});const t=data[family][0];document.getElementById("sceneTitle").textContent=t.n;stage.style.setProperty("--glow",t.c)}
 document.querySelectorAll("[data-family]").forEach(b=>b.onclick=()=>{family=+b.dataset.family;document.querySelectorAll("[data-family]").forEach(x=>x.classList.toggle("active",x===b));render()});render();
 document.getElementById("person").addEventListener("input",e=>document.getElementById("honoree").textContent=e.target.value.trim()||"ستاره جشن");
-document.querySelectorAll(".arrangements button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".arrangements button").forEach(x=>x.classList.toggle("active",x===b))});
+document.querySelectorAll(".arrangements button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".arrangements button").forEach(x=>x.classList.toggle("active",x===b));layout=b.dataset.layout;});
 const volume=()=>Number(document.getElementById("volume").value)/100;document.getElementById("volume").oninput=e=>document.getElementById("volLabel").textContent=e.target.value+"%";
 function stop(){if(timer)clearInterval(timer);timer=null;if(ctx){ctx.close();ctx=null}document.getElementById("play").textContent="▶ پخش نمونه"}
 function note(freq,duration,when,wave="sine",gain=.12){if(!ctx)return;const o=ctx.createOscillator(),g=ctx.createGain();o.type=wave;o.frequency.value=freq;g.gain.setValueAtTime(.0001,when);g.gain.exponentialRampToValueAtTime(Math.max(.0002,gain*volume()),when+.025);g.gain.exponentialRampToValueAtTime(.0001,when+duration);o.connect(g);g.connect(ctx.destination);o.start(when);o.stop(when+duration+.04)}
 const scales={birthday:[523,659,784,659,698,784,880,784,659,587,523],grand:[392,494,587,784,698,587,494,392],happy:[659,784,880,988,880,784,659,784],calm:[392,440,523,440,392,330],arrival:[523,659,784,1046,784,1046],ambient:[220,261,330,392,330,261]};
 function play(){stop();const AC=window.AudioContext||window.webkitAudioContext;if(!AC){alert("مرورگر شما پخش صدای آزمایشی را پشتیبانی نمی‌کند.");return}ctx=new AC();const key=document.getElementById("music").value,seq=scales[key]||scales.birthday,tempo=key==="calm"||key==="ambient"?620:340;step=0;const tick=()=>{if(!ctx)return;const now=ctx.currentTime;const f=seq[step%seq.length];note(f,.28,now,key==="grand"?"triangle":"sine",.16);if(key==="grand"||key==="ambient")note(f/2,.42,now,"sine",.08);if(key==="birthday"&&step%4===0)note(f*1.5,.18,now+.03,"triangle",.05);step++};tick();timer=setInterval(tick,tempo);document.getElementById("play").textContent="♫ در حال پخش نمونه"}
 document.getElementById("play").onclick=play;document.getElementById("stop").onclick=stop;document.getElementById("music").onchange=()=>{if(timer)play()};
+
+function birthdayStatus(message,error=false){const el=document.getElementById("apiStatus");el.textContent=message;el.style.color=error?"#ff9d9d":"#d8c5f5"}
+function birthdayToken(){return localStorage.getItem("caspianAuthToken")||""}
+async function birthdayApi(path,body){
+ const token=birthdayToken();if(!token)throw new Error("ابتدا از صفحه اصلی CASPIAN وارد حساب کاربری شو.");
+ const response=await fetch("/api/birthday"+path,{method:body===undefined?"GET":"POST",headers:{"content-type":"application/json","authorization":"Bearer "+token},...(body===undefined?{}:{body:JSON.stringify(body)})});
+ const data=await response.json().catch(()=>({error:"پاسخ سرور قابل خواندن نیست"}));
+ if(!response.ok)throw new Error(data.error||"درخواست ناموفق بود");
+ return data;
+}
+function showBirthdayRoom(room,inviteCode=""){
+ activeBirthdayRoomId=room.id;sessionStorage.setItem("caspianBirthdayRoomId",room.id);
+ document.getElementById("roomTools").hidden=false;
+ document.getElementById("activeRoomCode").textContent=room.roomCode||room.id;
+ document.getElementById("activeInviteCode").value=inviteCode;
+ document.getElementById("joinRoomId").value=room.id;
+}
+document.getElementById("createBirthdayRoom").onclick=async()=>{
+ try{
+  const token=birthdayToken();if(!token)throw new Error("ابتدا از صفحه اصلی CASPIAN وارد حساب کاربری شو.");
+  let honoree=document.getElementById("honoreeId").value.trim();
+  if(!honoree){const me=await fetch("/api/me",{headers:{authorization:"Bearer "+token}});const account=await me.json();if(!me.ok||!account.user?.id)throw new Error("شناسه فرد اصلی را وارد کن یا ابتدا وارد حساب شو.");honoree=account.user.id;document.getElementById("honoreeId").value=honoree;}
+  birthdayStatus("در حال ساخت اتاق و ثبت هزینه در کیف پول...");
+  const result=await birthdayApi("/rooms",{themeId:selectedTheme,honoreeUserId:honoree,layout,guestCount:Number(document.getElementById("guestCount").value)});
+  showBirthdayRoom(result.room);
+  birthdayStatus("اتاق ساخته شد؛ موجودی جدید: "+result.balance+" سکه. در حال صدور دعوت‌نامه...");
+  try{const invite=await birthdayApi("/rooms/"+result.room.id+"/invites",{maxUses:16,expiresInHours:72});document.getElementById("activeInviteCode").value=invite.invite.code;birthdayStatus("اتاق خصوصی ساخته شد و ۲۰٬۰۰۰ سکه از کیف پول صاحب اتاق کسر شد. کد دعوت: "+invite.invite.code);}
+  catch(e){birthdayStatus("اتاق ساخته شد؛ اما صدور دعوت‌نامه ناموفق بود: "+e.message,true);}
+ }catch(e){birthdayStatus(e.message,true);}
+};
+document.getElementById("newBirthdayInvite").onclick=async()=>{try{const r=await birthdayApi("/rooms/"+activeBirthdayRoomId+"/invites",{maxUses:16,expiresInHours:72});document.getElementById("activeInviteCode").value=r.invite.code;birthdayStatus("کد جدید صادر شد؛ کد قبلی باطل شد.");}catch(e){birthdayStatus(e.message,true);}};
+document.getElementById("copyBirthdayInvite").onclick=async()=>{try{await navigator.clipboard.writeText(document.getElementById("activeInviteCode").value);birthdayStatus("کد دعوت کپی شد.");}catch{birthdayStatus("کپی خودکار ممکن نشد؛ کد را دستی انتخاب کن.",true);}};
+document.getElementById("joinBirthdayRoom").onclick=async()=>{try{const id=document.getElementById("joinRoomId").value.trim(),inviteCode=document.getElementById("joinInviteCode").value.trim();const r=await birthdayApi("/rooms/"+id+"/join",{inviteCode});activeBirthdayRoomId=id;sessionStorage.setItem("caspianBirthdayRoomId",id);document.getElementById("roomTools").hidden=false;document.getElementById("activeRoomCode").textContent=id;birthdayStatus(r.alreadyJoined?"قبلاً عضو این اتاق بوده‌ای.":"با موفقیت و بدون پرداخت هزینه وارد اتاق شدی.");}catch(e){birthdayStatus(e.message,true);}};
+document.getElementById("sendBirthdayGift").onclick=async()=>{try{const r=await birthdayApi("/rooms/"+activeBirthdayRoomId+"/gifts",{recipientUserId:document.getElementById("giftRecipient").value.trim(),cosmeticId:document.getElementById("giftCosmetic").value.trim()});birthdayStatus("هدیه "+r.gift.name+" با موفقیت به گیرنده منتقل شد.");}catch(e){birthdayStatus(e.message,true);}};
+document.getElementById("closeBirthdayRoom").onclick=async()=>{try{await birthdayApi("/rooms/"+activeBirthdayRoomId+"/close",{});sessionStorage.removeItem("caspianBirthdayRoomId");activeBirthdayRoomId="";document.getElementById("roomTools").hidden=true;birthdayStatus("اتاق بسته شد و همه کدهای دعوت باطل شدند.");}catch(e){birthdayStatus(e.message,true);}};
+if(activeBirthdayRoomId){document.getElementById("roomTools").hidden=false;document.getElementById("activeRoomCode").textContent=activeBirthdayRoomId;birthdayStatus("شناسه اتاق قبلی بازیابی شد؛ برای ادامه، نشست حساب باید معتبر باشد.");}
+
 window.addEventListener("pagehide",stop);
 </script></body></html>
