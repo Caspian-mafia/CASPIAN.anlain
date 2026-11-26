@@ -103,6 +103,37 @@ app.get('/api/scenarios',(_q,s)=>s.json({scenarios:R.listScenarios(),exclusive:{
 app.get('/api/scenario',hostAuth,(q,s)=>s.json(q.room.scenario));
 app.put('/api/scenario',hostAuth,(q,s)=>{try{if(q.room.started)return s.status(409).json({error:'بازی شروع شده است'});q.room.scenario=R.validateScenario(q.body);store.save(q.room).then(()=>s.json({ok:true,scenario:q.room.scenario})).catch(e=>s.status(500).json({error:'ذخیره سناریو ناموفق بود'}));}catch(e){s.status(400).json({error:e.message});}});
 io.on('connection',socket=>{
+ socket.data.birthdayRoomIds=new Set();
+ socket.on('birthday:join',async({roomId,authToken}={},cb)=>{
+  try{
+   if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(String(roomId||''))||!/^[A-Za-z0-9_-]{40,}$/.test(String(authToken||'')))return cb?.({ok:false,error:'ورود یا شناسه اتاق معتبر نیست'});
+   const {rows}=await store.query("SELECT u.id,u.display_name FROM caspian_sessions a JOIN caspian_users u ON u.id=a.user_id JOIN caspian_birthday_room_participants p ON p.user_id=u.id JOIN caspian_birthday_room_sessions s ON s.id=p.birthday_room_id WHERE a.token_hash=$1 AND a.revoked_at IS NULL AND a.expires_at>NOW() AND u.is_suspended=FALSE AND s.id=$2 AND s.status IN ('open','active')",[tokenHash(authToken),roomId]);
+   if(!rows[0])return cb?.({ok:false,error:'عضویت یا نشست معتبر نیست'});
+   socket.data.birthdayUserId=rows[0].id;socket.data.birthdayDisplayName=rows[0].display_name;
+   socket.data.birthdayRoomIds.add(roomId);const channel='birthday:'+roomId;socket.join(channel);
+   const peers=await io.in(channel).fetchSockets();
+   const online=[...new Map(peers.filter(x=>x.data.birthdayUserId).map(x=>[x.data.birthdayUserId,{userId:x.data.birthdayUserId,displayName:x.data.birthdayDisplayName}])).values()];
+   io.to(channel).emit('birthday:presence',{online});cb?.({ok:true,roomId,online});
+  }catch(e){console.error('CASPIAN birthday socket join failed:',e.message);cb?.({ok:false,error:'اتصال زنده اتاق برقرار نشد'});}
+ });
+ socket.on('birthday:chat:send',async({roomId,message}={},cb)=>{
+  try{
+   const body=String(message||'').trim();
+   if(!socket.data.birthdayUserId||!socket.data.birthdayRoomIds?.has(roomId)||body.length<1||body.length>500)return cb?.({ok:false,error:'پیام خالی یا بیش از ۵۰۰ نویسه است'});
+   const {rows}=await store.query("INSERT INTO caspian_birthday_room_messages(birthday_room_id,sender_user_id,body) SELECT s.id,$2,$3 FROM caspian_birthday_room_sessions s JOIN caspian_birthday_room_participants p ON p.birthday_room_id=s.id AND p.user_id=$2 WHERE s.id=$1 AND s.status IN ('open','active') RETURNING id,body,created_at",[roomId,socket.data.birthdayUserId,body]);
+   if(!rows[0])return cb?.({ok:false,error:'اتاق بسته شده یا عضویت شما معتبر نیست'});
+   const item={id:rows[0].id,roomId,senderUserId:socket.data.birthdayUserId,senderName:socket.data.birthdayDisplayName,body:rows[0].body,createdAt:rows[0].created_at};
+   io.to('birthday:'+roomId).emit('birthday:chat:message',item);cb?.({ok:true,id:item.id});
+  }catch(e){console.error('CASPIAN birthday chat failed:',e.message);cb?.({ok:false,error:'ارسال پیام ناموفق بود'});}
+ });
+ socket.on('birthday:leave',({roomId}={})=>{
+  if(!socket.data.birthdayRoomIds?.has(roomId))return;
+  socket.data.birthdayRoomIds.delete(roomId);socket.leave('birthday:'+roomId);
+  io.in('birthday:'+roomId).fetchSockets().then(peers=>{
+   const online=[...new Map(peers.filter(x=>x.data.birthdayUserId).map(x=>[x.data.birthdayUserId,{userId:x.data.birthdayUserId,displayName:x.data.birthdayDisplayName}])).values()];
+   io.to('birthday:'+roomId).emit('birthday:presence',{online});
+  }).catch(()=>{});
+ });
  socket.on('create',async(data={},cb)=>{
   try{
   if(await readAppSetting('maintenance_mode',false)===true)throw Error('بازی در حال تعمیر است؛ کمی بعد دوباره تلاش کنید');
@@ -246,7 +277,7 @@ io.on('connection',socket=>{
  const CASPIAN_SPEAKERS={suspect:'من بهت مشکوکم! 🕵️',watching:'حواسم بهت هست 👀',ignore:'فعلاً توجهی بهت ندارم 🌙',neck:'دارم گردنت می‌گیرم! ⚖️',mafia:'تو قطعاً مافیایی! 🚨',trust:'بهت اعتماد دارم 💜',defend:'من ازت دفاع می‌کنم 🛡️'};
  const REQUIRED_SPEAKER_ITEM={neck:'social-speaker-mafia',mafia:'social-speaker-mafia',defend:'social-speaker-royal',suspect:'social-speaker-mafia'};
  socket.on('speaker',({targetId,speakerId}={},cb)=>{const r=roomFor(socket),actor=r?.players.find(p=>p.id===socket.data.playerId),target=r?.players.find(p=>p.id===targetId),phrase=CASPIAN_SPEAKERS[speakerId];if(!r||!actor||!target||actor.id===target.id||!phrase||!roomPolicy.canUseChat(r))return cb?.({ok:false,error:'اسپیکر در این مرحله در دسترس نیست'});if(REQUIRED_SPEAKER_ITEM[speakerId]&&!actor.socialItems?.includes(REQUIRED_SPEAKER_ITEM[speakerId]))return cb?.({ok:false,error:'برای استفاده از این اسپیکر، بسته مربوط را از فروشگاه بخرید'});const now=Date.now();if(now-(socket.data.lastSocialAction||0)<500)return cb?.({ok:false,error:'کمی صبر کن و دوباره بزن'});socket.data.lastSocialAction=now;io.to(r.code).emit('speaker',{from:actor.name,targetId,targetName:target.name,speakerId,text:phrase});cb?.({ok:true});});
- socket.on('disconnect',()=>{const playerId=socket.data.playerId;if(!playerId)return;for(const [code,r] of rooms){if(r.hostMode==='moderator'&&r.hostSocketId===socket.id){r.hostSocketId=null;io.to(code).emit('notice','اتصال گرداننده قطع شد؛ بازگشت با کلید گرداننده امکان‌پذیر است.');emitRoom(r);break;}const p=r.players.find(x=>x.id===playerId);if(!p||p.socketId!==socket.id)continue;p.socketId=null;if(r.hostPlayerId===playerId){r.hostSocketId=null;io.to(code).emit('notice','اتصال گرداننده قطع شد؛ بازگشت با توکن امکان‌پذیر است.');}emitRoom(r);break;}});
+ socket.on('disconnect',()=>{for(const roomId of socket.data.birthdayRoomIds||[]){io.in('birthday:'+roomId).fetchSockets().then(peers=>{const online=[...new Map(peers.filter(x=>x.data.birthdayUserId).map(x=>[x.data.birthdayUserId,{userId:x.data.birthdayUserId,displayName:x.data.birthdayDisplayName}])).values()];io.to('birthday:'+roomId).emit('birthday:presence',{online});}).catch(()=>{});}const playerId=socket.data.playerId;if(!playerId)return;for(const [code,r] of rooms){if(r.hostMode==='moderator'&&r.hostSocketId===socket.id){r.hostSocketId=null;io.to(code).emit('notice','اتصال گرداننده قطع شد؛ بازگشت با کلید گرداننده امکان‌پذیر است.');emitRoom(r);break;}const p=r.players.find(x=>x.id===playerId);if(!p||p.socketId!==socket.id)continue;p.socketId=null;if(r.hostPlayerId===playerId){r.hostSocketId=null;io.to(code).emit('notice','اتصال گرداننده قطع شد؛ بازگشت با توکن امکان‌پذیر است.');}emitRoom(r);break;}});
 });
 
 registerVoice(io,app,rooms,roomFor,hostRoom,R);
