@@ -1,0 +1,196 @@
+*{box-sizing:border-box}body{margin:0;background:#10131c;color:#f2f3f8;font-family:Tahoma,Arial,sans-serif;min-height:100vh}.shell{width:min(680px,94%);margin:28px auto}header{text-align:center;margin:32px 0}.brand{font-weight:900;letter-spacing:4px;font-size:28px;color:#e7bd72}.brand span{letter-spacing:0;color:#fff;font-size:20px;margin-right:8px}header p,small,footer{color:#9ca4b7}.panel{background:#1a2030;border:1px solid #30394d;border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 14px 40px #0003}h1,h2,h3{margin-top:0}label{display:block;color:#c4cada;font-size:14px;margin:12px 0}input{display:block;width:100%;margin-top:8px;background:#101521;color:white;border:1px solid #3a455c;border-radius:10px;padding:13px;font:inherit;min-width:0}button,.adminLink{border:0;border-radius:10px;background:#d5a958;color:#17130d;padding:13px 18px;font:inherit;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}button:disabled{opacity:.5}.secondary{background:#37435b;color:white}.actions{margin:14px 0}.split,.roomhead{display:flex;gap:10px;align-items:end}.split>*{flex:1}.roomhead{justify-content:space-between;align-items:center}.roomhead strong{display:block;font-size:22px;color:#e7bd72;margin-top:5px}ul{padding:0;list-style:none}li{padding:12px;border-bottom:1px solid #30394d}.error{color:#ff8f8f}.hidden{display:none!important}.role{font-size:22px;color:#e7bd72;font-weight:bold}.messages{height:150px;overflow:auto;background:#101521;border-radius:10px;padding:10px;margin-bottom:10px}.messages p{margin:7px 0}.adminLink{margin:12px 0 0;background:#37435b;color:#fff}footer{text-align:center;padding:25px;font-size:12px}@media(max-width:480px){.panel{padding:16px}.split{align-items:stretch}.brand{font-size:23px}}
+
+.store-panel{border-color:#65502d;background:linear-gradient(145deg,#202638,#171d2b)}.store-heading{display:flex;justify-content:space-between;align-items:center;gap:14px}.store-heading h2{margin:5px 0;color:#f2d18e}.store-heading p{color:#aeb7c8;font-size:13px;margin:0}.wallet-balance{min-width:112px;text-align:center;background:#101521;border:1px solid #66532f;border-radius:14px;padding:10px}.wallet-balance strong{display:block;color:#f5cb71;font-size:22px;margin:5px 0}.wallet-balance span{font-size:11px;color:#aeb7c8}.account-box{margin:18px 0;padding:15px;border-radius:14px;background:#111725;border:1px solid #344057}.account-title,.account-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.account-title h3{margin:0}.account-title span,.store-message{font-size:12px;color:#aeb7c8}.account-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.account-actions{justify-content:flex-start;margin-top:10px}.account-actions button{font-size:13px;padding:10px 14px}.coin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin-top:18px}.coin-card{min-width:0;text-align:center;background:#111725;border:1px solid #3b455b;border-radius:15px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px}.coin-icon{width:72px;height:72px;border-radius:50%;position:relative;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#fff0b2,#e9b94e 42%,#9d6822 78%);box-shadow:0 5px 14px #0007,inset 0 0 0 4px #f8d887,inset 0 0 0 7px #b57d2e}.coin-icon strong{font-size:25px;color:#815018;text-shadow:0 1px #fff3b4;z-index:2}.coin-stack{position:absolute;width:47px;height:12px;bottom:12px;border-radius:50%;background:#c28a31;box-shadow:0 5px 0 #e8b94e,0 10px 0 #98611f,0 15px 0 #dca83f}.coin-icon-1{transform:rotate(-5deg)}.coin-icon-2{background:radial-gradient(circle at 35% 28%,#fff1c2,#f4d36f 45%,#a66e27 80%)}.coin-icon-3{box-shadow:0 5px 14px #0007,inset 0 0 0 4px #ffe8a3,inset 0 0 0 8px #c28a31}.coin-icon-4{transform:rotate(5deg)}.coin-amount{font-size:15px;color:#f5d28c}.coin-price{font-size:12px;color:#aeb7c8;margin:0;min-height:18px}.coin-buy{width:100%;padding:10px 6px;font-size:12px}.coin-buy:disabled{cursor:not-allowed;background:#41495a;color:#aeb7c8}@media(max-width:480px){.store-heading{align-items:flex-start}.account-fields{grid-template-columns:1fr}.coin-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.coin-card{padding:12px 8px}}
+
+.cosmetics-panel{border-color:#4c5874}.profile-preview{min-width:100px;display:flex;flex-direction:column;align-items:center;gap:7px}.profile-frame{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;border:5px solid #6e7789;background:#101521;box-shadow:0 0 0 3px #29344a}.profile-frame span{font-size:36px}.frame-bronze{border-color:#a66c3e;box-shadow:0 0 0 3px #68452d}.frame-silver{border-color:#c6d1df;box-shadow:0 0 0 3px #65758b}.frame-gold{border-color:#e6b94e;box-shadow:0 0 0 3px #8c6422,0 0 15px #e6b94e66}.frame-neon{border-color:#65e9e4;box-shadow:0 0 0 3px #5d45a8,0 0 18px #65e9e4aa}.frame-fire{border-color:#f27636;box-shadow:0 0 0 3px #a52c24,0 0 18px #ff6a2eaa}.frame-caspian{border-color:#d9b5ff;box-shadow:0 0 0 3px #8054b7,0 0 18px #c49affaa}.cosmetic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin-top:16px}.cosmetic-card{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:14px 10px;background:#111725;border:1px solid #3b455b;border-radius:15px;min-width:0}.cosmetic-art{width:72px;height:72px;display:grid;place-items:center;border-radius:50%;background:#202b40}.avatar-art{font-size:42px}.frame-art{border:6px solid #a66c3e;background:#101521;box-shadow:0 0 0 3px #68452d}.cosmetic-name{font-size:14px;color:#f2d18e}.cosmetic-description{font-size:11px;color:#aeb7c8;margin:0;min-height:28px}.cosmetic-price{font-size:12px;color:#e7bd72}.cosmetic-action{width:100%;font-size:11px;padding:9px 5px}.cosmetic-action:disabled{background:#41495a;color:#c1c7d2;cursor:default}@media(max-width:480px){.cosmetic-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.profile-frame{width:66px;height:66px}.profile-frame span{font-size:31px}}
+
+/* CASPIAN fantasy cosmetics artwork */
+.profile-avatar-art,.cosmetic-art.avatar-art{overflow:hidden;border-radius:50%;background:radial-gradient(circle at 35% 20%,#34466c,#121827 72%);display:grid;place-items:center}
+.profile-avatar-art{width:76px;height:76px;border:2px solid #e8c47b;box-shadow:0 0 22px #9e72ff55}
+.profile-avatar-art svg,.cosmetic-art svg{width:100%;height:100%;display:block}
+.profile-frame{position:relative;overflow:hidden;border-radius:50%;width:82px;height:82px;display:grid;place-items:center;background:transparent;border:0;box-shadow:none}
+.profile-frame svg{width:100%;height:100%;display:block;overflow:visible}
+.cosmetic-art{width:88px;height:88px;flex:none}
+.cosmetic-art.frame-art{background:radial-gradient(circle,#1a2336 54%,transparent 56%);border:0;box-shadow:none}
+.cosmetic-art.frame-art svg{overflow:visible}
+.cosmetic-card{background:linear-gradient(155deg,#202a40,#111827 72%);border-color:#3c4a69;box-shadow:inset 0 1px #ffffff0b,0 8px 24px #0003}
+.cosmetic-card:hover{border-color:#9e82df;transform:translateY(-2px);transition:transform .18s,border-color .18s}
+.cosmetic-name{color:#f5d99d}
+
+.emote-bar{display:flex;gap:8px;overflow-x:auto;padding:8px 2px;margin:6px 0;scrollbar-width:thin}
+.emote-button{flex:0 0 38px;width:38px;height:38px;padding:3px;border-radius:12px;background:#28344c;border:1px solid #485878;display:grid;place-items:center}
+.emote-button svg{width:30px;height:30px}
+.emote-button:hover{background:#394a6b;border-color:#b89af3}
+
+.chat-emote{width:24px;height:24px;vertical-align:middle;margin:0 2px;display:inline-block}
+
+/* Player identity stays distinct from the secret scenario role. */
+.room-player{display:flex;align-items:center;gap:12px;min-height:72px}.room-player-portrait{position:relative;display:inline-block;flex:0 0 58px;width:58px;height:58px}.room-player-avatar,.room-player-frame{position:absolute;inset:0;display:block}.room-player-avatar svg,.room-player-frame svg{width:100%;height:100%;display:block}.room-player-frame{pointer-events:none}.room-player-info{display:flex;flex-direction:column;gap:5px}.room-player-info strong{color:#f2f3f8}.room-player-info small{font-size:11px}.my-role-card{display:flex;align-items:center;gap:12px;padding:12px 15px;border:1px solid #6855a0;border-radius:14px;background:linear-gradient(120deg,#25213e,#151c2b);font-size:16px}.my-role-art{width:58px;height:58px;flex:none}.my-role-art svg{width:100%;height:100%}
+
+.identity-note{margin:-4px 0 10px;color:#9faac0;font-size:12px;line-height:1.7}
+
+
+/* CASPIAN royal purple & gold scenario selector */
+body{background:radial-gradient(ellipse at 50% -15%,#39205f 0,#171326 42%,#0c0a16 100%);color:#f8f2ff}
+.panel{background:linear-gradient(155deg,#24183d 0%,#171327 72%);border-color:#6846a0;box-shadow:0 16px 42px #05020c99, inset 0 1px #ffffff12}
+.brand{color:#f5ce75;text-shadow:0 0 18px #d69b36aa}
+button{background:linear-gradient(135deg,#ffe59a,#d99a32 65%,#9d5c16);color:#24132d;box-shadow:0 4px 18px #e5ad4b33}
+.secondary,.adminLink{background:linear-gradient(135deg,#6336a0,#32165f);color:#fff;border:1px solid #a47ad5}
+.scenario-picker{margin:14px 0 18px;padding:14px;border:1px solid #9369c6;border-radius:16px;background:linear-gradient(145deg,#2b1b49,#151124);box-shadow:inset 0 0 22px #a65bff12}
+.scenario-picker-heading{display:flex;justify-content:space-between;gap:8px;align-items:center;color:#f5d48b;margin-bottom:10px;font-size:13px}
+.scenario-option{display:flex;align-items:center;gap:10px;margin:8px 0;padding:11px;border:1px solid #5c477d;border-radius:12px;background:#171327;cursor:pointer}
+.scenario-option input{width:18px;height:18px;margin:0;accent-color:#d9a84d;flex:none}
+.scenario-option span{display:flex;flex-direction:column;gap:4px;min-width:0}
+.scenario-option b{color:#fff0c4;font-size:14px}
+.scenario-option small{color:#c4b2dc;font-size:11px}
+.scenario-option em{font-style:normal;color:#e6bd72;font-size:11px}
+.empire-option{border-color:#d9a84d;background:linear-gradient(100deg,#28153e,#171327);box-shadow:0 0 16px #c28b3b22}
+.scenario-crown{margin-right:auto;color:#f4cb67;font-size:27px}
+
+.empire-create{width:100%;margin-top:10px;background:linear-gradient(110deg,#4a2679,#27123f 60%,#b57a25);border:1px solid #e5bd66;color:#ffe7a4;box-shadow:0 0 20px #b77b3b33;font-weight:800}
+#roomScenario{color:#edc66f}
+
+
+/* Final polish: responsive royal CASPIAN layout */
+:root{color-scheme:dark;--caspian-gold:#f2ca72;--caspian-purple:#6e43a6;--caspian-panel:#1b1530;--caspian-line:#6b4a91}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(ellipse at 50% -12%,#43236b 0,#211433 38%,#0d0a16 100%);background-attachment:fixed}
+.shell{width:min(960px,94%);margin:24px auto 40px}
+header{padding:20px 12px 8px;margin:18px 0 24px}
+.brand{font-size:clamp(26px,4vw,36px);letter-spacing:5px}
+header p{font-size:14px;letter-spacing:.2px}
+.panel{border-radius:20px;padding:clamp(16px,2.5vw,26px);border-color:#65468b;background:linear-gradient(145deg,#281b40 0%,#191329 72%);box-shadow:0 18px 48px #05020c99,inset 0 1px #ffffff12}
+h1,h2,h3{color:#f8e8c3}
+input,select{background:#100d1d;border:1px solid #594273;color:#fff;border-radius:12px}
+input:focus,select:focus{outline:2px solid #d6ad64;outline-offset:2px;border-color:#e2bd70}
+button,.adminLink{border-radius:12px;transition:transform .16s ease,filter .16s ease,box-shadow .16s ease}
+button:hover,.adminLink:hover{filter:brightness(1.08);transform:translateY(-1px)}
+button:focus-visible,.adminLink:focus-visible{outline:2px solid #fff0bd;outline-offset:3px}
+.roomhead{flex-wrap:wrap;padding:12px 14px;border:1px solid #604481;border-radius:15px;background:#130f21}
+.roomhead>div{min-width:105px}
+.roomhead strong{font-size:clamp(16px,2.4vw,22px)}
+.room-player{padding:9px 8px;border-bottom:1px solid #ffffff12}
+.room-player:nth-child(odd){background:#ffffff05}
+.messages{background:#100d1d;border:1px solid #46345f}
+.store-panel,.cosmetics-panel{border-color:#98703d}
+.store-heading h2,.coin-amount,.cosmetic-name{color:#f6d58e}
+.wallet-balance,.account-box,.coin-card,.cosmetic-card{background:linear-gradient(155deg,#191329,#100d1c);border-color:#57416f}
+.coin-card,.cosmetic-card{border-radius:16px}
+.coin-card:hover,.cosmetic-card:hover{border-color:#d6ae68;box-shadow:0 12px 28px #0005}
+.scenario-picker{border-color:#b58a4e}
+footer{padding:24px 12px;line-height:1.9}
+@media(min-width:760px){
+ .shell{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;align-items:start}
+ header,footer{grid-column:1/-1}
+ #coinStore,#cosmeticsStore{grid-column:span 1}
+ #entry,#lobby{grid-column:1/-1}
+}
+@media(max-width:600px){
+ .shell{width:min(100% - 20px,520px);margin:10px auto 24px}
+ .panel{padding:15px;border-radius:16px}
+ .store-heading{gap:8px}
+ .wallet-balance{min-width:96px}
+ .roomhead{gap:12px}
+ .roomhead>div{flex:1 1 28%}
+ .actions button{width:100%;margin:4px 0}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+
+/* CASPIAN live social play: role actions stay private; public reactions are targeted. */
+.social-tools{margin:12px 0 14px;padding:14px;border:1px solid #7655a1;border-radius:15px;background:linear-gradient(145deg,#25183c,#120f20);box-shadow:inset 0 0 22px #b98aff0b}
+.social-tools h4{margin:0 0 8px;color:#f4d58f}.social-tools label{margin:8px 0}.social-tools select{width:100%;padding:10px;border-radius:10px}
+.social-tools small{display:block;margin:12px 0 5px;color:#d5b8f2;font-weight:bold}
+.social-actions,.speaker-actions{display:flex;gap:7px;flex-wrap:wrap;margin:7px 0}
+.social-actions button,.speaker-actions button{padding:8px 10px;font-size:12px;border:1px solid #765a9e;background:linear-gradient(135deg,#382458,#211531);color:#f7eaff;box-shadow:none}
+.social-actions .social-like{border-color:#9b69c9;color:#f4d6ff}.social-actions .social-dislike{border-color:#8b6176;color:#ffdce6}
+.social-feedback,.sticker-pop,.speaker-pop,.vote-pop{padding:9px 11px;border-radius:12px;background:linear-gradient(100deg,#33214f,#1b1730);border:1px solid #75549d;color:#f8e9ff;animation:caspian-pop .28s ease-out}
+.sticker-pop{font-size:17px;border-color:#c69b57;background:linear-gradient(100deg,#47305c,#24182f)}
+.speaker-pop{border-color:#d0a85e;background:linear-gradient(100deg,#513b22,#271b35);font-weight:bold}
+.vote-pop{border-color:#e0b85f;background:linear-gradient(100deg,#5a3b75,#281b3d);font-weight:bold}
+.vote-lightning{box-shadow:0 0 18px #f5d45c66}.vote-rose{box-shadow:0 0 18px #ed8ab866}.vote-shadow{box-shadow:0 0 18px #9b77df66}.vote-meteor{box-shadow:0 0 18px #7bd9e766}
+@keyframes caspian-pop{from{opacity:.2;transform:translateY(8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.social-feedback,.sticker-pop,.speaker-pop,.vote-pop{animation:none}}
+
+.social-store-panel{border-color:#98703d;background:linear-gradient(145deg,#2b1d40,#151124)}
+.social-store-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:11px;margin-top:16px}
+.social-store-card{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:14px 10px;border:1px solid #6d4e8d;border-radius:15px;background:linear-gradient(155deg,#211832,#120f20)}
+.social-store-art{width:58px;height:58px;display:grid;place-items:center;border-radius:16px;background:radial-gradient(circle,#60437c,#21152f);font-size:31px;box-shadow:0 0 16px #b58ae933}
+.social-store-card strong{color:#f5d99d;font-size:14px}.social-store-card p{font-size:11px;color:#b9aacb;min-height:42px;margin:0;line-height:1.7}
+.social-store-card small{color:#e7bd72}.social-store-card button{width:100%;padding:9px 5px;font-size:12px}
+.social-store-card button:disabled{background:#3c4050;color:#aeb7c8;box-shadow:none}
+
+/* CASPIAN original soundtrack controls */
+.music-dock{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 18px;padding:14px 18px;border:1px solid #9b7545;border-radius:16px;background:linear-gradient(115deg,#281943,#151126 72%);box-shadow:0 8px 28px #05020c66}
+.music-copy{display:flex;flex:1 1 180px;flex-direction:column;gap:5px}.music-copy strong{color:#f5d58e;font-size:14px}.music-copy small{font-size:11px;line-height:1.6;color:#c7b6df}
+.music-dock button{padding:10px 13px;font-size:12px;white-space:nowrap}.music-volume{display:flex;align-items:center;gap:8px;margin:0;font-size:12px;white-space:nowrap}.music-volume input{width:100px;margin:0;padding:0;accent-color:#e6bd6b}
+@media(max-width:480px){.music-dock{gap:10px;padding:12px}.music-copy{flex-basis:100%}.music-dock button{flex:1}.music-volume{flex:1}.music-volume input{flex:1;min-width:60px}}
+
+
+.flow-host-tools,.role-card-picker{margin:14px 0;padding:14px;border:1px solid rgba(212,175,55,.32);border-radius:14px;background:rgba(28,18,54,.72)}
+.flow-time-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:9px}
+.flow-time-grid label{font-size:.82rem}
+.flow-time-grid input{width:100%;box-sizing:border-box}
+.role-card-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:10px}
+.role-card{min-height:115px;border:1px solid #b99745;border-radius:12px;background:linear-gradient(145deg,#26194b,#0c0a1d);color:#f4d77b;font-size:1.1rem;box-shadow:0 5px 18px #0006}
+.role-card:disabled{opacity:.35;filter:grayscale(1)}
+.host-role-list{display:grid;gap:5px;margin-top:12px}
+.host-role-row{display:flex;justify-content:space-between;gap:8px;padding:7px;border-bottom:1px solid #ffffff18;font-size:.88rem}
+.seat-control{max-width:72px;margin-inline-start:auto}
+
+/* Use the original CASPIAN asset sprites for every illustrated game control. */
+.brand-inline-icon{width:24px;height:24px;vertical-align:middle;object-fit:contain;margin-inline-start:6px}.scenario-crown img{width:34px;height:34px;object-fit:contain;display:block}.game-action-icon{width:24px;height:24px;display:inline-block;vertical-align:middle;margin-inline-end:5px}.social-actions button{display:inline-flex;align-items:center;gap:5px}
+
+/* Persian-first typography: prefer a native Persian/Arabic UI font, with Android Noto fallback. */
+:root{font-family:"Vazirmatn","IRANSansX","Noto Sans Arabic","Noto Naskh Arabic UI","Noto Naskh Arabic","Droid Arabic Naskh",Tahoma,sans-serif;font-synthesis:none;text-rendering:optimizeLegibility}
+html,body{font-family:"Vazirmatn","IRANSansX","Noto Sans Arabic","Noto Naskh Arabic UI","Noto Naskh Arabic","Droid Arabic Naskh",Tahoma,sans-serif}
+button,input,select,textarea{font:inherit;font-family:inherit}
+body{direction:rtl;text-align:right}
+input,select,textarea{direction:rtl;text-align:right}
+[dir="ltr"],.brand{unicode-bidi:isolate}
+
+/* CASPIAN royal purple-and-gold visual system */
+:root{color-scheme:dark;--royal:#180d2b;--royal2:#26113f;--royal3:#351653;--gold:#e8c477;--gold2:#b88736;--ink:#f8f1ff;--muted:#c2b5d2}
+body{background:radial-gradient(ellipse at 50% -12%,#4b2469 0,#211132 36%,#10091b 78%);color:var(--ink)}
+.shell{display:flex;flex-direction:column;width:min(760px,94%);margin:18px auto}
+.caspian-header{order:0;position:relative;text-align:center;margin:10px 0 18px;padding:24px 14px 20px;border:1px solid #9a713b;border-radius:24px;background:linear-gradient(145deg,#291342eF,#160d27f5 70%);box-shadow:0 16px 44px #0008,inset 0 0 35px #8c5bb01c;overflow:hidden}
+.caspian-header:before,.caspian-header:after{content:"";position:absolute;width:170px;height:170px;border:1px solid #d7b46a35;border-radius:50%;top:-110px}
+.caspian-header:before{right:-70px}.caspian-header:after{left:-70px}
+.brand{display:flex;justify-content:center;align-items:center;gap:10px;letter-spacing:5px;font-size:clamp(28px,7vw,40px);color:var(--gold);text-shadow:0 0 20px #e8c47755}
+.brand .brand-fa{font-size:19px;letter-spacing:0;color:#fff1cf;border-right:1px solid #b78d4d;padding-right:12px}
+.brand-crown{font-size:34px;line-height:1;color:#f5d78e;text-shadow:0 0 18px #e7bd72aa}
+.caspian-header p{margin:10px 0 5px;color:#f4d99c;font-size:15px}
+.header-motto{color:#c7b3db;letter-spacing:0}
+#entry{order:1}.music-dock{order:2}.store-panel{order:3}.cosmetics-panel{order:4}.social-store-panel{order:5}#lobby{order:1}footer{order:9}
+.entry-panel{position:relative;isolation:isolate;overflow:hidden;padding:26px 22px;border:1px solid #b58a49;border-radius:24px;background:linear-gradient(155deg,#2b1645 0%,#1b102d 48%,#120b20 100%);box-shadow:0 20px 55px #0009,inset 0 0 48px #a36bd21a}
+.entry-panel:before{content:"";position:absolute;z-index:-1;width:300px;height:300px;border-radius:50%;top:-190px;left:calc(50% - 150px);background:#a46bd2;filter:blur(90px);opacity:.19}
+.entry-emblem{width:76px;height:76px;margin:0 auto 10px;display:grid;place-items:center;border-radius:50%;font-size:45px;color:#f5d98f;background:radial-gradient(circle,#65417e 0,#2c1746 66%,#170d29 100%);border:1px solid #d5ad61;box-shadow:0 0 0 6px #d5ad6114,0 0 30px #b88a4d55}
+.entry-kicker{text-align:center;color:#e6c77f;font-size:13px;letter-spacing:1px;margin:4px 0 7px}
+.entry-panel h1{text-align:center;color:#fff0c8;font-size:27px;margin:0 0 8px;text-shadow:0 2px 18px #d5ad6140}
+.entry-intro{text-align:center;color:#cbbbdc;font-size:13px;line-height:1.9;margin:0 auto 20px;max-width:480px}
+.scenario-picker{padding:15px;border:1px solid #70518a;border-radius:17px;background:#120b20b8}
+.scenario-picker-heading{color:#efd28f}
+.scenario-option{border:1px solid #49315f!important;background:linear-gradient(100deg,#28163d,#1a1029)!important;border-radius:12px!important;padding:12px!important;margin:8px 0!important;transition:border-color .2s,transform .2s}
+.scenario-option:has(input:checked){border-color:#e3bd70!important;box-shadow:0 0 0 1px #e3bd7040,0 5px 20px #0005}
+.scenario-option b{color:#fff0cc}.scenario-option small{color:#c4b3d3}
+.empire-option{background:linear-gradient(100deg,#402052,#21132e)!important;border-color:#b58a49!important}
+.entry-panel label{color:#eadcf6}.entry-panel input,.entry-panel select,.account-box input{background:#10091d;border-color:#654b7c;color:#fff}
+.entry-panel input:focus,.entry-panel select:focus,.account-box input:focus{outline:2px solid #d8b46c;outline-offset:1px}
+button,.adminLink{background:linear-gradient(135deg,#f1d58f,#c18b3d);color:#21132a;border:1px solid #f7df9f;box-shadow:0 5px 16px #0004}
+button:hover,.adminLink:hover{filter:brightness(1.08);transform:translateY(-1px)}
+button.secondary,.adminLink{background:linear-gradient(135deg,#56346f,#302044);border-color:#8a6ba4;color:#fff}
+.entry-panel .empire-create{background:linear-gradient(135deg,#f5d98d,#a96e2f);color:#24132d}
+.panel{background:linear-gradient(145deg,#241437,#171023);border-color:#503766;box-shadow:0 14px 38px #0006}
+.store-panel{border-color:#866438;background:linear-gradient(145deg,#2a1b3d,#181024)}
+.account-box,.messages,.wallet-balance,.coin-card{background:#120b20;border-color:#59416e}
+.account-title h3,.store-heading h2{color:#f1d796}
+.role{color:#f1d796}
+footer{color:#b7a5c9}
+@media(max-width:520px){.shell{width:94%;margin:10px auto}.caspian-header{padding:19px 10px}.brand{letter-spacing:3px}.brand .brand-fa{font-size:16px}.entry-panel{padding:20px 14px}.entry-panel h1{font-size:24px}.scenario-picker{padding:10px}}
+
+.room-directory-panel{border-color:#66523a;background:linear-gradient(155deg,#202b3c 0%,#171d2b 60%,#24182e 100%);background-image:radial-gradient(ellipse at 82% 12%,#8052a944,transparent 42%),radial-gradient(ellipse at 12% 88%,#b58a3a33,transparent 40%),linear-gradient(155deg,#202b3c,#171d2b 60%,#24182e)}
+.room-directory-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.room-directory-heading h2{margin:5px 0;color:#f3d79c}.room-directory-heading p{margin:0;color:#c1c7d4;font-size:12px}
+.public-room-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:14px}
+.public-room-card{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:14px;border:1px solid #746044;border-radius:14px;background:linear-gradient(145deg,#171d2bee,#251a30ed);box-shadow:0 8px 24px #0005}
+.public-room-card strong{color:#f3d79c}.public-room-card p{margin:0;color:#c6ccda;font-size:12px}.public-room-card small{color:#9ee0c1}.public-room-card button{margin-top:5px;width:100%;padding:10px}
+@media(max-width:480px){.room-directory-heading{align-items:flex-start;flex-direction:column}.room-directory-heading button{width:100%}.public-room-list{grid-template-columns:1fr}}

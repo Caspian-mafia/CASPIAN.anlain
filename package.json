@@ -1,0 +1,25 @@
+{
+  "name": "caspian-mafia-online",
+  "version": "3.0.0",
+  "private": true,
+  "description": "CASPIAN realtime Mafia game with configurable rules engine",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1",
+    "pg": "^8.16.3",
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.1",
+    "@capacitor/cli": "^7.4.3"
+  }
+}

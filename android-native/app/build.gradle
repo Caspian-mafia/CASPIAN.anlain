@@ -1,0 +1,20 @@
+plugins { id 'com.android.application' }
+def caspianServerUrl = project.findProperty('CASPIAN_SERVER_URL') ?: System.getenv('CASPIAN_SERVER_URL')
+if (!caspianServerUrl) throw new GradleException('CASPIAN_SERVER_URL is required; offline builds are disabled.')
+def serverUri
+try { serverUri = new URI(caspianServerUrl) } catch (Exception ignored) { throw new GradleException('CASPIAN_SERVER_URL must be a valid HTTPS origin.') }
+if (serverUri.scheme != 'https' || !serverUri.host || (serverUri.path && serverUri.path != '/') || serverUri.userInfo || serverUri.query || serverUri.fragment) throw new GradleException('CASPIAN_SERVER_URL must be a clean public HTTPS origin.')
+def escapedServerUrl = caspianServerUrl.replace('\\', '\\\\').replace('"', '\\"')
+android {
+ namespace 'com.caspian.mafia'
+ compileSdk 35
+ buildFeatures { buildConfig true }
+ defaultConfig {
+  applicationId 'com.caspian.mafia'
+  minSdk 23
+  targetSdk 35
+  versionCode 100
+  versionName '1.0.0'
+  buildConfigField 'String', 'CASPIAN_SERVER_URL', "\""+escapedServerUrl+"\""
+ }
+}

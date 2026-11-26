@@ -1,0 +1,61 @@
+name: Build CASPIAN online Android APK
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'android-native/**'
+      - 'server.js'
+      - 'public/**'
+      - '.github/workflows/android-online-apk.yml'
+permissions:
+  contents: read
+jobs:
+  build-online-apk:
+    if: ${{ vars.CASPIAN_SERVER_URL != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install server dependencies
+        run: npm install --no-audit --no-fund
+      - name: Test game engine
+        run: npm test
+      - name: Verify public PostgreSQL server
+        env:
+          CASPIAN_SERVER_URL: ${{ vars.CASPIAN_SERVER_URL }}
+        run: |
+          node <<'NODE'
+          const base = new URL(process.env.CASPIAN_SERVER_URL);
+          if (base.protocol !== 'https:' || base.username || base.password || (base.pathname !== '/' && base.pathname !== '') || base.search || base.hash) throw new Error('CASPIAN_SERVER_URL must be a clean HTTPS origin');
+          fetch(new URL('/health', base), {signal: AbortSignal.timeout(20000)}).then(async r => {
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok || d.ok !== true || d.storage !== 'postgresql') throw new Error('Server /health must confirm PostgreSQL storage');
+            console.log('Verified:', base.origin);
+          }).catch(e => { console.error(e); process.exit(1); });
+          NODE
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install Android SDK
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Build online Android APK
+        working-directory: android-native
+        env:
+          CASPIAN_SERVER_URL: ${{ vars.CASPIAN_SERVER_URL }}
+        run: gradle --no-daemon clean assembleDebug -PCASPIAN_SERVER_URL="$CASPIAN_SERVER_URL"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CASPIAN-Online-Android-APK
+          path: android-native/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14

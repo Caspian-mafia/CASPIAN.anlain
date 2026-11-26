@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>فروشگاه دارایی‌های کاسپین</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#38205b,#10091f 55%);color:#f6edff;font-family:Tahoma,Arial,sans-serif;padding:20px}
+header{max-width:1200px;margin:auto;padding:24px;border:1px solid #9d79d4;border-radius:22px;background:#211236;text-align:center}h1{color:#f4d27a;margin:0 0 8px}p{color:#d9c8ef;margin:6px}
+main{max-width:1200px;margin:22px auto}.section{margin:22px 0;padding:18px;border:1px solid #6f4e98;border-radius:18px;background:#1b102d}.section h2{color:#f4d27a;margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}.item{min-width:0;padding:12px;background:#291942;border:1px solid #64468c;border-radius:14px;text-align:center}.item svg{width:76px;height:76px;display:block;margin:0 auto 8px}.item b{font-size:13px}.sub{font-size:12px;color:#cbb7e2;margin-top:5px}
+.framepreview{position:relative;width:82px;height:82px;margin:auto}.framepreview svg{position:absolute;inset:0;width:100%;height:100%}.framepreview .sample{width:60%;height:60%;left:20%;top:20%;border-radius:50%;background:linear-gradient(135deg,#7e4db7,#d4a44b);display:grid;place-items:center;font-size:27px}
+footer{text-align:center;color:#bda9d4;padding:20px}
+</style></head><body>
+<header><h1>👑 CASPIAN • فروشگاه و کاتالوگ دارایی‌ها</h1><p>آواتارها، دورقاب‌ها، استیکرها، اسپیکرها و جلوه‌های رأی</p><p>دارایی‌های برداری فعلی شاخه کاری پروژه</p></header>
+<main>
+<section class="section"><h2>آواتارها</h2><div class="grid" id="avatars"></div></section>
+<section class="section"><h2>دورقاب‌های پروفایل</h2><div class="grid" id="frames"></div></section>
+<section class="section"><h2>استیکرها و واکنش‌ها</h2><div class="grid" id="emotes"></div></section>
+<section class="section"><h2>اسپیکرها و جلوه‌های رأی‌گیری</h2><div class="grid" id="social"></div></section>
+</main><footer>CASPIAN MAFIA • همه شناسه‌ها از فایل‌های دارایی همین مخزن بارگذاری می‌شوند.</footer>
+<script>
+const A=[
+["avatar-fox","روباه فانتزی"],["avatar-cat","گربه نئونی"],["avatar-wolf","گرگ"],["avatar-owl","جغد"],["avatar-dragon","اژدها"],["avatar-king","شاه"],["avatar-detective","بازپرس"],["avatar-doctor","دکتر"],["avatar-godfather","پدرخوانده"],["avatar-hitman","قاتل سایه"],["avatar-witch","جادوگر"],["avatar-vampire","خون‌آشام"],["avatar-pirate","دزد دریایی"],["avatar-samurai","سامورایی"],["avatar-raven","کلاغ"],["avatar-tiger","ببر"],["avatar-ice-queen","ملکه یخی"],["avatar-phantom","شبح"],["avatar-alchemist","کیمیاگر"],["avatar-starter-fox","روباه آغازین"],["avatar-starter-cat","گربه آغازین"],["avatar-starter-owl","جغد آغازین"],
+["avatar-apoc-hellking","پادشاه جهنم"],["avatar-apoc-demon","شیطان بال‌دار"],["avatar-apoc-vampire","خون‌آشام سرخ"],["avatar-apoc-iceghost","روح یخی"],["avatar-apoc-darkwitch","جادوگر تاریکی"],["avatar-apoc-shadowqueen","ملکه سایه‌ها"],["avatar-apoc-hellwolf","گرگ اهریمنی"],["avatar-apoc-skullknight","شوالیه جمجمه"],["avatar-apoc-plague","فرشته طاعون"],["avatar-apoc-crow","کلاغ قیامت"],["avatar-apoc-firelord","ارباب آتش"],["avatar-apoc-nightmare","کابوس"]];
+const F=[["frame-starter","آغازین"],["frame-bronze","برنزی"],["frame-silver","نقره‌ای"],["frame-gold","طلایی"],["frame-neon","نئونی"],["frame-fire","شعله‌ای"],["frame-caspian","کاسپین"],["frame-iron","آهنی"],["frame-emerald","زمردی"],["frame-sapphire","یاقوت کبود"],["frame-amethyst","آمتیست"],["frame-shadow","سایه"],["frame-royal-red","سلطنتی سرخ"],["frame-celestial","آسمانی"],["frame-diamond","الماسی"]];
+const E=[["emote-laugh","خنده"],["emote-fire","آتش"],["emote-skull","جمجمه"],["emote-heart","قلب"],["emote-moon","ماه"],["emote-crown","تاج"],["emote-star","ستاره"],["emote-detective","بازپرس"]];
+const S=[["speaker-gold","اسپیکر طلایی"],["speaker-royal","اسپیکر سلطنتی"],["speaker-wolf","اسپیکر گرگ"],["speaker-mic","میکروفن"],["speaker-heart","اسپیکر قلب"],["speaker-shh","سکوت"],["speaker-siren","آژیر"],["vote-crown","تاج رأی"],["vote-crystal","کریستال رأی"],["vote-rose","رز آتشین"],["vote-lightning","صاعقه"],["vote-hourglass","ساعت شنی"],["vote-magic","دایره جادو"],["vote-wings","بال‌ها"],["vote-check","تأیید طلایی"]];
+function cards(target,data,file){document.getElementById(target).innerHTML=data.map(([id,label])=>'<div class="item"><svg viewBox="0 0 100 100"><use href="../cosmetics/'+file+'#'+id+'"></use></svg><b>'+label+'</b><div class="sub">'+id+'</div></div>').join('')}
+cards("avatars",A,"avatars.svg");cards("frames",F,"frames.svg");cards("emotes",E,"emojis.svg");cards("social",S,"social-effects.svg");
+</script></body></html>

@@ -1,0 +1,22 @@
+name: CASPIAN online tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Check online server syntax
+        run: node --check server.js && node --check rules-engine.js && node --check scenario-runtime.js && node --check platform.js && node --check persistence.js && node --check public/app.js
+      - name: Run online game tests
+        run: npm test

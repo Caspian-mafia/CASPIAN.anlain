@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#160d2b">
+<title>گالری یکپارچه آواتورهای کاسپین</title>
+<style>
+:root{color-scheme:dark;--bg:#10091e;--panel:#211632;--gold:#f3c96d;--purple:#a77bea;--muted:#c6b5d9}
+*{box-sizing:border-box}body{margin:0;padding:20px;color:#fff;background:radial-gradient(ellipse at 50% -10%,#59317b 0,transparent 45%),var(--bg);font-family:Tahoma,Arial,sans-serif}
+header,main{max-width:1100px;margin:auto}header{text-align:center;padding:28px 16px;border:1px solid #8b65b8;border-radius:22px;background:#211632;box-shadow:0 12px 36px #0006}
+h1{margin:0 0 8px;color:var(--gold);font-size:clamp(22px,4vw,32px)}header p{margin:6px;color:#d9c9e9;font-size:13px;line-height:1.9}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px auto}
+button,input{font:inherit;border-radius:12px;border:1px solid #684c88;background:#25183b;color:#fff;padding:11px 14px}
+button{cursor:pointer}button.active{background:linear-gradient(110deg,#ffe39a,#d6a34b);color:#271632;border-color:#ffe39a;font-weight:bold}
+input{width:min(100%,360px);outline:none}input:focus{border-color:var(--gold)}
+.meta{max-width:1100px;margin:0 auto 12px;color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.card{min-width:0;padding:13px 9px;text-align:center;border:1px solid #51396c;border-radius:16px;background:linear-gradient(150deg,#2c1c46,#191126);box-shadow:0 7px 20px #0004}
+.card svg{width:86px;height:86px;display:block;margin:0 auto 9px;filter:drop-shadow(0 5px 9px #0008)}
+.card b{display:block;font-size:12px;color:#ffe6a6}.card small{display:block;margin-top:5px;color:#bda9d4;font-size:9px;direction:ltr;overflow-wrap:anywhere}
+.card[hidden]{display:none}
+footer{text-align:center;color:#9f8db4;font-size:11px;padding:24px 0}
+</style></head>
+<body>
+<header><h1>👑 گالری یکپارچه آواتورهای CASPIAN</h1><p>تمام شخصیت‌های کلاسیک، آغازین و آخرالزمانی در یک مجموعه</p><p>۳۴ آواتور مستقل · منبع گرافیکی مشترک: avatars.svg</p></header>
+<main>
+<div class="toolbar" aria-label="فیلتر آواتورها">
+<button class="active" data-filter="all">همه آواتورها · ۳۴</button>
+<button data-filter="classic">کلاسیک و آغازین · ۲۲</button>
+<button data-filter="apocalypse">آخرالزمانی · ۱۲</button>
+<input id="search" type="search" placeholder="جست‌وجوی نام یا شناسه آواتور" aria-label="جست‌وجوی آواتور">
+</div>
+<div class="meta" id="count" aria-live="polite">نمایش ۳۴ از ۳۴ آواتور</div>
+<section class="grid" id="gallery">
+<article class="card" data-group="classic" data-search="avatar-starter-fox روباه آغازین"><svg viewBox="0 0 100 100" role="img" aria-label="روباه آغازین"><use href="avatars.svg#avatar-starter-fox"></use></svg><b>روباه آغازین</b><small>avatar-starter-fox</small></article>
+<article class="card" data-group="classic" data-search="avatar-starter-cat گربه آغازین"><svg viewBox="0 0 100 100" role="img" aria-label="گربه آغازین"><use href="avatars.svg#avatar-starter-cat"></use></svg><b>گربه آغازین</b><small>avatar-starter-cat</small></article>
+<article class="card" data-group="classic" data-search="avatar-starter-owl جغد آغازین"><svg viewBox="0 0 100 100" role="img" aria-label="جغد آغازین"><use href="avatars.svg#avatar-starter-owl"></use></svg><b>جغد آغازین</b><small>avatar-starter-owl</small></article>
+<article class="card" data-group="classic" data-search="avatar-fox روباه زرنگ"><svg viewBox="0 0 100 100" role="img" aria-label="روباه زرنگ"><use href="avatars.svg#avatar-fox"></use></svg><b>روباه زرنگ</b><small>avatar-fox</small></article>
+<article class="card" data-group="classic" data-search="avatar-cat گربه مرموز"><svg viewBox="0 0 100 100" role="img" aria-label="گربه مرموز"><use href="avatars.svg#avatar-cat"></use></svg><b>گربه مرموز</b><small>avatar-cat</small></article>
+<article class="card" data-group="classic" data-search="avatar-wolf گرگ شب"><svg viewBox="0 0 100 100" role="img" aria-label="گرگ شب"><use href="avatars.svg#avatar-wolf"></use></svg><b>گرگ شب</b><small>avatar-wolf</small></article>
+<article class="card" data-group="classic" data-search="avatar-owl جغد دانا"><svg viewBox="0 0 100 100" role="img" aria-label="جغد دانا"><use href="avatars.svg#avatar-owl"></use></svg><b>جغد دانا</b><small>avatar-owl</small></article>
+<article class="card" data-group="classic" data-search="avatar-dragon اژدهای آتش"><svg viewBox="0 0 100 100" role="img" aria-label="اژدهای آتش"><use href="avatars.svg#avatar-dragon"></use></svg><b>اژدهای آتش</b><small>avatar-dragon</small></article>
+<article class="card" data-group="classic" data-search="avatar-king شاه کاسپین"><svg viewBox="0 0 100 100" role="img" aria-label="شاه کاسپین"><use href="avatars.svg#avatar-king"></use></svg><b>شاه کاسپین</b><small>avatar-king</small></article>
+<article class="card" data-group="classic" data-search="avatar-detective کارآگاه"><svg viewBox="0 0 100 100" role="img" aria-label="کارآگاه"><use href="avatars.svg#avatar-detective"></use></svg><b>کارآگاه</b><small>avatar-detective</small></article>
+<article class="card" data-group="classic" data-search="avatar-doctor پزشک"><svg viewBox="0 0 100 100" role="img" aria-label="پزشک"><use href="avatars.svg#avatar-doctor"></use></svg><b>پزشک</b><small>avatar-doctor</small></article>
+<article class="card" data-group="classic" data-search="avatar-godfather پدرخوانده"><svg viewBox="0 0 100 100" role="img" aria-label="پدرخوانده"><use href="avatars.svg#avatar-godfather"></use></svg><b>پدرخوانده</b><small>avatar-godfather</small></article>
+<article class="card" data-group="classic" data-search="avatar-hitman تک‌تیرانداز"><svg viewBox="0 0 100 100" role="img" aria-label="تک‌تیرانداز"><use href="avatars.svg#avatar-hitman"></use></svg><b>تک‌تیرانداز</b><small>avatar-hitman</small></article>
+<article class="card" data-group="classic" data-search="avatar-witch جادوگر"><svg viewBox="0 0 100 100" role="img" aria-label="جادوگر"><use href="avatars.svg#avatar-witch"></use></svg><b>جادوگر</b><small>avatar-witch</small></article>
+<article class="card" data-group="classic" data-search="avatar-vampire خون‌آشام"><svg viewBox="0 0 100 100" role="img" aria-label="خون‌آشام"><use href="avatars.svg#avatar-vampire"></use></svg><b>خون‌آشام</b><small>avatar-vampire</small></article>
+<article class="card" data-group="classic" data-search="avatar-pirate دزد دریایی"><svg viewBox="0 0 100 100" role="img" aria-label="دزد دریایی"><use href="avatars.svg#avatar-pirate"></use></svg><b>دزد دریایی</b><small>avatar-pirate</small></article>
+<article class="card" data-group="classic" data-search="avatar-samurai سامورایی"><svg viewBox="0 0 100 100" role="img" aria-label="سامورایی"><use href="avatars.svg#avatar-samurai"></use></svg><b>سامورایی</b><small>avatar-samurai</small></article>
+<article class="card" data-group="classic" data-search="avatar-raven کلاغ سیاه"><svg viewBox="0 0 100 100" role="img" aria-label="کلاغ سیاه"><use href="avatars.svg#avatar-raven"></use></svg><b>کلاغ سیاه</b><small>avatar-raven</small></article>
+<article class="card" data-group="classic" data-search="avatar-tiger ببر"><svg viewBox="0 0 100 100" role="img" aria-label="ببر"><use href="avatars.svg#avatar-tiger"></use></svg><b>ببر</b><small>avatar-tiger</small></article>
+<article class="card" data-group="classic" data-search="avatar-ice-queen ملکه یخی"><svg viewBox="0 0 100 100" role="img" aria-label="ملکه یخی"><use href="avatars.svg#avatar-ice-queen"></use></svg><b>ملکه یخی</b><small>avatar-ice-queen</small></article>
+<article class="card" data-group="classic" data-search="avatar-phantom شبح"><svg viewBox="0 0 100 100" role="img" aria-label="شبح"><use href="avatars.svg#avatar-phantom"></use></svg><b>شبح</b><small>avatar-phantom</small></article>
+<article class="card" data-group="classic" data-search="avatar-alchemist کیمیاگر"><svg viewBox="0 0 100 100" role="img" aria-label="کیمیاگر"><use href="avatars.svg#avatar-alchemist"></use></svg><b>کیمیاگر</b><small>avatar-alchemist</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-hellking پادشاه جهنم"><svg viewBox="0 0 100 100" role="img" aria-label="پادشاه جهنم"><use href="avatars.svg#avatar-apoc-hellking"></use></svg><b>پادشاه جهنم</b><small>avatar-apoc-hellking</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-demon دیو آخرالزمان"><svg viewBox="0 0 100 100" role="img" aria-label="دیو آخرالزمان"><use href="avatars.svg#avatar-apoc-demon"></use></svg><b>دیو آخرالزمان</b><small>avatar-apoc-demon</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-vampire خون‌آشام تاریک"><svg viewBox="0 0 100 100" role="img" aria-label="خون‌آشام تاریک"><use href="avatars.svg#avatar-apoc-vampire"></use></svg><b>خون‌آشام تاریک</b><small>avatar-apoc-vampire</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-iceghost روح یخی"><svg viewBox="0 0 100 100" role="img" aria-label="روح یخی"><use href="avatars.svg#avatar-apoc-iceghost"></use></svg><b>روح یخی</b><small>avatar-apoc-iceghost</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-darkwitch جادوگر سیاه"><svg viewBox="0 0 100 100" role="img" aria-label="جادوگر سیاه"><use href="avatars.svg#avatar-apoc-darkwitch"></use></svg><b>جادوگر سیاه</b><small>avatar-apoc-darkwitch</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-shadowqueen ملکه سایه‌ها"><svg viewBox="0 0 100 100" role="img" aria-label="ملکه سایه‌ها"><use href="avatars.svg#avatar-apoc-shadowqueen"></use></svg><b>ملکه سایه‌ها</b><small>avatar-apoc-shadowqueen</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-hellwolf گرگ جهنمی"><svg viewBox="0 0 100 100" role="img" aria-label="گرگ جهنمی"><use href="avatars.svg#avatar-apoc-hellwolf"></use></svg><b>گرگ جهنمی</b><small>avatar-apoc-hellwolf</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-skullknight شوالیه جمجمه"><svg viewBox="0 0 100 100" role="img" aria-label="شوالیه جمجمه"><use href="avatars.svg#avatar-apoc-skullknight"></use></svg><b>شوالیه جمجمه</b><small>avatar-apoc-skullknight</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-plague طاعون"><svg viewBox="0 0 100 100" role="img" aria-label="طاعون"><use href="avatars.svg#avatar-apoc-plague"></use></svg><b>طاعون</b><small>avatar-apoc-plague</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-crow کلاغ شوم"><svg viewBox="0 0 100 100" role="img" aria-label="کلاغ شوم"><use href="avatars.svg#avatar-apoc-crow"></use></svg><b>کلاغ شوم</b><small>avatar-apoc-crow</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-firelord فرمانروای آتش"><svg viewBox="0 0 100 100" role="img" aria-label="فرمانروای آتش"><use href="avatars.svg#avatar-apoc-firelord"></use></svg><b>فرمانروای آتش</b><small>avatar-apoc-firelord</small></article>
+<article class="card" data-group="apocalypse" data-search="avatar-apoc-nightmare کابوس"><svg viewBox="0 0 100 100" role="img" aria-label="کابوس"><use href="avatars.svg#avatar-apoc-nightmare"></use></svg><b>کابوس</b><small>avatar-apoc-nightmare</small></article>
+</section>
+</main>
+<footer>CASPIAN MAFIA · همه آواتورها از فایل برداری اصلی همین مخزن خوانده می‌شوند.</footer>
+<script>
+const buttons=[...document.querySelectorAll('[data-filter]')],cards=[...document.querySelectorAll('.card')],search=document.getElementById('search'),count=document.getElementById('count');let filter='all';
+function update(){const q=search.value.trim().toLocaleLowerCase();let visible=0;cards.forEach(card=>{const okGroup=filter==='all'||card.dataset.group===filter;const okText=card.dataset.search.toLocaleLowerCase().includes(q);card.hidden=!(okGroup&&okText);if(!card.hidden)visible++});count.textContent='نمایش '+visible+' از '+cards.length+' آواتور'}
+buttons.forEach(button=>button.addEventListener('click',()=>{filter=button.dataset.filter;buttons.forEach(b=>b.classList.toggle('active',b===button));update()}));search.addEventListener('input',update);
+</script>
+</body></html>

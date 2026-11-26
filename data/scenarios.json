@@ -1,0 +1,1063 @@
+{
+  "schemaVersion": 2,
+  "catalogue": "CASPIAN",
+  "locale": "fa-IR",
+  "rulesModel": {
+    "phases": [
+      "lobby",
+      "night",
+      "day_discussion",
+      "day_vote",
+      "finished"
+    ],
+    "dayVote": "one vote per living player; strict plurality; ties cause no elimination",
+    "nightActions": "one action per living role with an enabled night power; resolution order: block, protect, investigate/reveal, eliminate, objective",
+    "factionVote": "faction members vote internally; leader resolves a tie when present"
+  },
+  "flagship": {
+    "id": "empire-of-shadows",
+    "name": "امپراتوری سایه‌ها",
+    "players": {
+      "min": 16,
+      "max": 16
+    },
+    "status": "specified",
+    "factions": [
+      "مافیا",
+      "مستقل",
+      "شهروند"
+    ],
+    "roleCount": 16,
+    "source": "قواعد تأییدشده پروژه CASPIAN"
+  },
+  "scenarios": [
+    {
+      "id": "classic-mafia",
+      "name": "مافیای کلاسیک",
+      "players": {
+        "min": 7,
+        "max": 16
+      },
+      "theme": "شهری و کلاسیک",
+      "factions": [
+        {
+          "id": "mafia",
+          "name": "مافیا",
+          "base": 2,
+          "step": 4,
+          "order": [
+            "godfather",
+            "mafioso"
+          ],
+          "win": "parity"
+        },
+        {
+          "id": "citizens",
+          "name": "شهروندان",
+          "base": 0,
+          "order": [
+            "detective",
+            "doctor",
+            "guard",
+            "citizen"
+          ],
+          "win": "eliminate_faction"
+        }
+      ],
+      "roles": [
+        [
+          "godfather",
+          "پدرخوانده",
+          "mafia",
+          "leader",
+          "night"
+        ],
+        [
+          "mafioso",
+          "مافیای ساده",
+          "mafia",
+          "eliminate",
+          "night"
+        ],
+        [
+          "detective",
+          "کارآگاه",
+          "citizens",
+          "investigate",
+          "night"
+        ],
+        [
+          "doctor",
+          "پزشک",
+          "citizens",
+          "protect",
+          "night"
+        ],
+        [
+          "guard",
+          "محافظ",
+          "citizens",
+          "protect",
+          "night"
+        ],
+        [
+          "citizen",
+          "شهروند",
+          "citizens",
+          "none",
+          "none"
+        ]
+      ],
+      "winConditions": {
+        "mafia": "parity",
+        "citizens": "eliminate_faction"
+      }
+    },
+    {
+      "id": "royal-investigation",
+      "name": "پرونده سلطنتی",
+      "players": {
+        "min": 8,
+        "max": 16
+      },
+      "theme": "معمایی و درباری",
+      "factions": [
+        {
+          "id": "network",
+          "name": "شبکه تبهکار",
+          "base": 2,
+          "step": 4,
+          "order": [
+            "crime_boss",
+            "enforcer"
+          ],
+          "win": "parity"
+        },
+        {
+          "id": "city",
+          "name": "تیم تحقیق شهر",
+          "base": 0,
+          "order": [
+            "inspector",
+            "journalist",
+            "medic",
+            "witness"
+          ],
+          "win": "eliminate_faction"
+        }
+      ],
+      "roles": [
+        [
+          "crime_boss",
+          "رئیس شبکه",
+          "network",
+          "leader",
+          "night"
+        ],
+        [
+          "enforcer",
+          "مجری شبکه",
+          "network",
+          "eliminate",
+          "night"
+        ],
+        [
+          "inspector",
+          "بازپرس",
+          "city",
+          "investigate",
+          "night"
+        ],
+        [
+          "journalist",
+          "خبرنگار",
+          "city",
+          "reveal",
+          "night"
+        ],
+        [
+          "medic",
+          "پزشک",
+          "city",
+          "protect",
+          "night"
+        ],
+        [
+          "witness",
+          "شاهد",
+          "city",
+          "investigate",
+          "night"
+        ]
+      ],
+      "winConditions": {
+        "network": "parity",
+        "city": "eliminate_faction"
+      }
+    },
+    {
+      "id": "zodiac",
+      "name": "زودیاک: دوازده نشان",
+      "players": {
+        "min": 8,
+        "max": 16
+      },
+      "theme": "رازآلود و نمادین",
+      "factions": [
+        {
+          "id": "zodiac",
+          "name": "فرقه زودیاک",
+          "base": 2,
+          "step": 4,
+          "order": [
+            "zodiac_master",
+            "acolyte"
+          ],
+          "win": "parity"
+        },
+        {
+          "id": "town",
+          "name": "شهروندان",
+          "base": 0,
+          "order": [
+            "astrologer",
+            "tracker",
+            "protector",
+            "townie"
+          ],
+          "win": "eliminate_faction"
+        },
+        {
+          "id": "independent",
+          "name": "مستقل",
+          "base": 1,
+          "step": 99,
+          "order": [
+            "lone_assassin"
+          ],
+          "win": "last_alive"
+        }
+      ],
+      "roles": [
+        [
+          "zodiac_master",
+          "رهبر زودیاک",
+          "zodiac",
+          "leader",
+          "night"
+        ],
+        [
+          "acolyte",
+          "پیرو زودیاک",
+          "zodiac",
+          "eliminate",
+          "night"
+        ],
+        [
+          "astrologer",
+          "طالع‌بین",
+          "town",
+          "investigate",
+          "night"
+        ],
+        [
+          "tracker",
+          "ردیاب",
+          "town",
+          "track",
+          "night"
+        ],
+        [
+          "protector",
+          "محافظ",
+          "town",
+          "protect",
+          "night"
+        ],
+        [
+          "townie",
+          "شهروند",
+          "town",
+          "none",
+          "none"
+        ],
+        [
+          "lone_assassin",
+          "قاتل تنها",
+          "independent",
+          "eliminate",
+          "night"
+        ]
+      ],
+      "winConditions": {
+        "zodiac": "parity",
+        "town": "eliminate_faction",
+        "independent": "last_alive"
+      }
+    },
+    {
+      "id": "gangster-wars",
+      "name": "جنگ گنگسترها",
+      "players": {
+        "min": 8,
+        "max": 16
+      },
+      "theme": "رقابت باندهای زیرزمینی",
+      "factions": [
+        {
+          "id": "east_gang",
+          "name": "باند شرق",
+          "base": 2,
+          "step": 5,
+          "order": [
+            "east_boss",
+            "east_soldier"
+          ],
+          "win": "parity"
+        },
+        {
+          "id": "west_gang",
+          "name": "باند غرب",
+          "base": 2,
+          "step": 5,
+          "order": [
+            "west_boss",
+            "west_soldier"
+          ],
+          "win": "parity"
+        },
+        {
+          "id": "town",
+          "name": "مردم شهر",
+          "base": 0,
+          "order": [
+            "detective",
+            "informant",
+            "doctor",
+            "resident"
+          ],
+          "win": "eliminate_factions"
+        }
+      ],
+      "roles": [
+        [
+          "east_boss",
+          "رئیس باند شرق",
+          "east_gang",
+          "leader",
+          "night"
+        ],
+        [
+          "east_soldier",
+          "عضو باند شرق",
+          "east_gang",
+          "eliminate",
+          "night"
+        ],
+        [
+          "west_boss",
+          "رئیس باند غرب",
+          "west_gang",
+          "leader",
+          "night"
+        ],
+        [
+          "west_soldier",
+          "عضو باند غرب",
+          "west_gang",
+          "eliminate",
+          "night"
+        ],
+        [
+          "detective",
+          "کارآگاه",
+          "town",
+          "investigate",
+          "night"
+        ],
+        [
+          "informant",
+          "خبرچین",
+          "town",
+          "reveal",
+          "night"
+        ],
+        [
+          "doctor",
+          "پزشک",
+          "town",
+          "protect",
+          "night"
+        ],
+        [
+          "resident",
+          "شهروند شهر",
+          "town",
+          "none",
+          "none"
+        ]
+      ],
+      "winConditions": {
+        "east_gang": "parity",
+        "west_gang": "parity",
+        "town": "eliminate_factions"
+      }
+    },
+    {
+      "id": "tactical-command",
+      "name": "فرماندهی تکاوران",
+      "players": {
+        "min": 8,
+        "max": 16
+      },
+      "theme": "عملیات تاکتیکی",
+      "factions": [
+        {
+          "id": "infiltrators",
+          "name": "نفوذی‌ها",
+          "base": 2,
+          "step": 4,
+          "order": [
+            "infiltrator_lead",
+            "infiltrator"
+          ],
+          "win": "objective"
+        },
+        {
+          "id": "special_forces",
+          "name": "نیروهای ویژه",
+          "base": 0,
+          "order": [
+            "commander",
+            "ranger",
+            "sniper",
+            "engineer",
+            "analyst"
+          ],
+          "win": "eliminate_faction"
+        }
+      ],
+      "roles": [
+        [
+          "infiltrator_lead",
+          "سرکرده نفوذی‌ها",
+          "infiltrators",
+          "sabotage",
+          "night"
+        ],
+        [
+          "infiltrator",
+          "نفوذی",
+          "infiltrators",
+          "sabotage",
+          "night"
+        ],
+        [
+          "commander",
+          "فرمانده عملیات",
+          "special_forces",
+          "leader",
+          "night"
+        ],
+        [
+          "ranger",
+          "تکاور",
+          "special_forces",
+          "eliminate",
+          "night"
+        ],
+        [
+          "sniper",
+          "تک‌تیرانداز",
+          "special_forces",
+          "eliminate",
+          "night"
+        ],
+        [
+          "engineer",
+          "مهندس خنثی‌سازی",
+          "special_forces",
+          "protect",
+          "night"
+        ],
+        [
+          "analyst",
+          "تحلیلگر اطلاعات",
+          "special_forces",
+          "investigate",
+          "night"
+        ]
+      ],
+      "winConditions": {
+        "infiltrators": "objective",
+        "special_forces": "eliminate_faction"
+      },
+      "objective": {
+        "id": "sabotage",
+        "target": 3,
+        "label": "ثبت سه خرابکاری موفق نفوذی‌ها"
+      }
+    },
+    {
+      "id": "vampire-night",
+      "name": "شب خون‌آشام‌ها",
+      "players": {
+        "min": 7,
+        "max": 15
+      },
+      "theme": "فانتزی تاریک",
+      "factions": [
+        {
+          "id": "vampires",
+          "name": "خون‌آشام‌ها",
+          "base": 2,
+          "step": 4,
+          "order": [
+            "vampire_lord",
+            "vampire"
+          ],
+          "win": "parity"
+        },
+        {
+          "id": "villagers",
+          "name": "روستاییان",
+          "base": 0,
+          "order": [
+            "hunter",
+            "healer",
+            "watchman",
+            "villager"
+          ],
+          "win": "eliminate_faction"
+        },
+        {
+          "id": "independent",
+          "name": "شکارچی مستقل",
+          "base": 1,
+          "step": 99,
+          "order": [
+            "slayer"
+          ],
+          "win": "last_alive"
+        }
+      ],
+      "roles": [
+        [
+          "vampire_lord",
+          "ارباب خون‌آشام",
+          "vampires",
+          "leader",
+          "night"
+        ],
+        [
+          "vampire",
+          "خون‌آشام",
+          "vampires",
+          "eliminate",
+          "night"
+        ],
+        [
+          "hunter",
+          "شکارچی",
+          "villagers",
+          "investigate",
+          "night"
+        ],
+        [
+          "healer",
+          "شفادهنده",
+          "villagers",
+          "protect",
+          "night"
+        ],
+        [
+          "watchman",
+          "نگهبان",
+          "villagers",
+          "track",
+          "night"
+        ],
+        [
+          "villager",
+          "روستایی",
+          "villagers",
+          "none",
+          "none"
+        ],
+        [
+          "slayer",
+          "شکارچی مستقل",
+          "independent",
+          "eliminate",
+          "night"
+        ]
+      ],
+      "winConditions": {
+        "vampires": "parity",
+        "villagers": "eliminate_faction",
+        "independent": "last_alive"
+      }
+    },
+    {
+      "id": "last-days",
+      "name": "آخرالزمان: آخرین پناهگاه",
+      "players": {
+        "min": 8,
+        "max": 16
+      },
+      "theme": "بقا و وحشت آخرالزمانی",
+      "factions": [
+        {
+          "id": "infected",
+          "name": "آلودگان",
+          "base": 2,
+          "step": 4,
+          "order": [
+            "patient_zero",
+            "infected"
+          ],
+          "win": "objective"
+        },
+        {
+          "id": "survivors",
+          "name": "بازماندگان",
+          "base": 0,
+          "order": [
+            "shelter_leader",
+            "medic",
+            "engineer",
+            "scout",
+            "survivor"
+          ],
+          "win": "objective"
+        },
+        {
+          "id": "raider",
+          "name": "غارتگر مستقل",
+          "base": 1,
+          "step": 99,
+          "order": [
+            "raider"
+          ],
+          "win": "last_alive"
+        }
+      ],
+      "roles": [
+        [
+          "patient_zero",
+          "بیمار صفر",
+          "infected",
+          "infect",
+          "night"
+        ],
+        [
+          "infected",
+          "آلوده پنهان",
+          "infected",
+          "infect",
+          "night"
+        ],
+        [
+          "shelter_leader",
+          "فرمانده پناهگاه",
+          "survivors",
+          "reveal",
+          "night"
+        ],
+        [
+          "medic",
+          "پزشک",
+          "survivors",
+          "protect",
+          "night"
+        ],
+        [
+          "engineer",
+          "مهندس",
+          "survivors",
+          "repair",
+          "night"
+        ],
+        [
+          "scout",
+          "دیده‌بان",
+          "survivors",
+          "investigate",
+          "night"
+        ],
+        [
+          "survivor",
+          "بازمانده",
+          "survivors",
+          "none",
+          "none"
+        ],
+        [
+          "raider",
+          "غارتگر مستقل",
+          "raider",
+          "eliminate",
+          "night"
+        ]
+      ],
+      "winConditions": {
+        "infected": "objective",
+        "survivors": "objective",
+        "raider": "last_alive"
+      },
+      "objective": {
+        "id": "infection_or_rescue",
+        "target": 3,
+        "label": "سه آلودگی موفق یا سه تعمیر موفق پناهگاه"
+      }
+    },
+    {
+      "id": "wild-west",
+      "name": "غرب وحشی: شهر بی‌قانون",
+      "players": {
+        "min": 7,
+        "max": 14
+      },
+      "theme": "وسترن",
+      "factions": [
+        {
+          "id": "outlaws",
+          "name": "راهزنان",
+          "base": 2,
+          "step": 4,
+          "order": [
+            "outlaw_boss",
+            "outlaw"
+          ],
+          "win": "parity"
+        },
+        {
+          "id": "town",
+          "name": "مردم شهر",
+          "base": 0,
+          "order": [
+            "sheriff",
+            "deputy",
+            "doctor",
+            "bounty_hunter",
+            "townsfolk"
+          ],
+          "win": "eliminate_faction"
+        },
+        {
+          "id": "duelist",
+          "name": "دوئل‌طلب مستقل",
+          "base": 1,
+          "step": 99,
+          "order": [
+            "duelist"
+          ],
+          "win": "last_alive"
+        }
+      ],
+      "roles": [
+        [
+          "outlaw_boss",
+          "سالار راهزنان",
+          "outlaws",
+          "leader",
+          "night"
+        ],
+        [
+          "outlaw",
+          "راهزن",
+          "outlaws",
+          "eliminate",
+          "night"
+        ],
+        [
+          "sheriff",
+          "کلانتر",
+          "town",
+          "investigate",
+          "night"
+        ],
+        [
+          "deputy",
+          "معاون کلانتر",
+          "town",
+          "protect",
+          "night"
+        ],
+        [
+          "doctor",
+          "پزشک",
+          "town",
+          "protect",
+          "night"
+        ],
+        [
+          "bounty_hunter",
+          "جایزه‌بگیر",
+          "town",
+          "investigate",
+          "night"
+        ],
+        [
+          "townsfolk",
+          "مردم شهر",
+          "town",
+          "none",
+          "none"
+        ],
+        [
+          "duelist",
+          "دوئل‌طلب",
+          "duelist",
+          "eliminate",
+          "night"
+        ]
+      ],
+      "winConditions": {
+        "outlaws": "parity",
+        "town": "eliminate_faction",
+        "duelist": "last_alive"
+      }
+    },
+    {
+      "id": "pirate-fortune",
+      "name": "گنج نفرین‌شده دزدان دریایی",
+      "players": {
+        "min": 8,
+        "max": 16
+      },
+      "theme": "ماجراجویی دریایی",
+      "factions": [
+        {
+          "id": "mutineers",
+          "name": "خدمه شورشی",
+          "base": 2,
+          "step": 4,
+          "order": [
+            "captain_rebel",
+            "pirate"
+          ],
+          "win": "objective"
+        },
+        {
+          "id": "navy",
+          "name": "ناوگان سلطنتی",
+          "base": 0,
+          "order": [
+            "admiral",
+            "navigator",
+            "ship_medic",
+            "marine",
+            "sailor"
+          ],
+          "win": "eliminate_faction"
+        },
+        {
+          "id": "treasure_hunter",
+          "name": "شکارچی گنج مستقل",
+          "base": 1,
+          "step": 99,
+          "order": [
+            "treasure_hunter"
+          ],
+          "win": "objective"
+        }
+      ],
+      "roles": [
+        [
+          "captain_rebel",
+          "کاپیتان شورشی",
+          "mutineers",
+          "sabotage",
+          "night"
+        ],
+        [
+          "pirate",
+          "دزد دریایی",
+          "mutineers",
+          "sabotage",
+          "night"
+        ],
+        [
+          "admiral",
+          "ناخدا",
+          "navy",
+          "leader",
+          "night"
+        ],
+        [
+          "navigator",
+          "نقشه‌خوان",
+          "navy",
+          "investigate",
+          "night"
+        ],
+        [
+          "ship_medic",
+          "پزشک کشتی",
+          "navy",
+          "protect",
+          "night"
+        ],
+        [
+          "marine",
+          "تفنگدار دریایی",
+          "navy",
+          "eliminate",
+          "night"
+        ],
+        [
+          "sailor",
+          "ملوان",
+          "navy",
+          "none",
+          "none"
+        ],
+        [
+          "treasure_hunter",
+          "شکارچی گنج",
+          "treasure_hunter",
+          "collect",
+          "night"
+        ]
+      ],
+      "winConditions": {
+        "mutineers": "objective",
+        "navy": "eliminate_faction",
+        "treasure_hunter": "objective"
+      },
+      "objective": {
+        "id": "treasure",
+        "target": 3,
+        "label": "سه نشان گنج جمع‌آوری‌شده"
+      }
+    },
+    {
+      "id": "cyber-heist",
+      "name": "سرقت سایبری: هک بزرگ",
+      "players": {
+        "min": 6,
+        "max": 12
+      },
+      "theme": "فناوری و جاسوسی",
+      "factions": [
+        {
+          "id": "hackers",
+          "name": "هکرها",
+          "base": 2,
+          "step": 4,
+          "order": [
+            "mastermind",
+            "hacker"
+          ],
+          "win": "objective"
+        },
+        {
+          "id": "security",
+          "name": "امنیت شبکه",
+          "base": 0,
+          "order": [
+            "security_chief",
+            "data_analyst",
+            "trace_agent",
+            "firewall",
+            "operator"
+          ],
+          "win": "objective"
+        },
+        {
+          "id": "mercenary",
+          "name": "نفوذگر مستقل",
+          "base": 1,
+          "step": 99,
+          "order": [
+            "mercenary"
+          ],
+          "win": "objective"
+        }
+      ],
+      "roles": [
+        [
+          "mastermind",
+          "مغز متفکر",
+          "hackers",
+          "hack",
+          "night"
+        ],
+        [
+          "hacker",
+          "هکر",
+          "hackers",
+          "hack",
+          "night"
+        ],
+        [
+          "security_chief",
+          "مدیر امنیت",
+          "security",
+          "reveal",
+          "night"
+        ],
+        [
+          "data_analyst",
+          "تحلیلگر داده",
+          "security",
+          "investigate",
+          "night"
+        ],
+        [
+          "trace_agent",
+          "ردیاب دیجیتال",
+          "security",
+          "track",
+          "night"
+        ],
+        [
+          "firewall",
+          "متخصص دیوار آتش",
+          "security",
+          "protect",
+          "night"
+        ],
+        [
+          "operator",
+          "اپراتور شبکه",
+          "security",
+          "repair",
+          "night"
+        ],
+        [
+          "mercenary",
+          "نفوذگر مستقل",
+          "mercenary",
+          "hack",
+          "night"
+        ]
+      ],
+      "winConditions": {
+        "hackers": "objective",
+        "security": "objective",
+        "mercenary": "objective"
+      },
+      "objective": {
+        "id": "data_breach",
+        "target": 3,
+        "label": "سه امتیاز رخنه یا قرارداد مستقل"
+      }
+    }
+  ],
+  "powerDescriptions": {
+    "leader": "رهبر جناح؛ رأی داخلی می‌دهد و در تساوی، انتخاب او تعیین‌کننده است.",
+    "eliminate": "اقدام حمله شبانه؛ در جناح‌های گروهی به رأی داخلی تبدیل می‌شود و فقط یک هدف نهایی انتخاب می‌شود.",
+    "investigate": "استعلام محرمانه؛ مشخص می‌کند هدف هم‌جناح است یا دشمن.",
+    "protect": "محافظت شبانه از یک بازیکن در برابر یک حمله.",
+    "reveal": "نمایش محرمانه جناح هدف برای دارنده نقش.",
+    "track": "بررسی محرمانه اینکه هدف نقش دارای اقدام شبانه دارد یا خیر.",
+    "sabotage": "افزایش امتیاز خرابکاری جناح برای رسیدن به شرط پیروزی هدف‌محور.",
+    "infect": "افزایش امتیاز آلودگی جناح برای رسیدن به شرط پیروزی هدف‌محور.",
+    "repair": "افزایش امتیاز تعمیر/نجات جناح برای رسیدن به شرط پیروزی هدف‌محور.",
+    "collect": "جمع‌آوری امتیاز گنج برای شرط پیروزی شکارچی گنج.",
+    "hack": "افزایش امتیاز نفوذ/هک برای شرط پیروزی هدف‌محور.",
+    "none": "بدون اقدام شبانه؛ نقش در بحث و رأی روز شرکت می‌کند."
+  }
+}

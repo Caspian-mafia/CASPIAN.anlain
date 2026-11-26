@@ -1,0 +1,22 @@
+{
+  "id": "/",
+  "name": "CASPIAN",
+  "short_name": "CASPIAN",
+  "description": "CASPIAN | بازی آنلاین مافیا",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#180d2b",
+  "theme_color": "#180d2b",
+  "icons": [
+    {
+      "src": "/assets/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

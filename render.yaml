@@ -1,0 +1,26 @@
+# Free-tier CASPIAN test deployment.
+# Render Free web service + external Neon Free PostgreSQL.
+# Free Render services can sleep; this is for testing, not production availability.
+services:
+  - type: web
+    name: caspian-mafia-game
+    runtime: docker
+    region: frankfurt
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"
+      - key: PGSSLMODE
+        value: require
+      - key: DATABASE_URL
+        sync: false
+      - key: CASPIAN_ADMIN_KEY
+        generateValue: true
+      - key: ZARINPAL_SANDBOX
+        value: "true"

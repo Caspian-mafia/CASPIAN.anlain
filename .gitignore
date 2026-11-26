@@ -1,0 +1,22 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies and generated output
+node_modules/
+coverage/
+dist/
+build/
+
+# Logs and runtime files
+*.log
+npm-debug.log*
+*.pid
+pids/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
