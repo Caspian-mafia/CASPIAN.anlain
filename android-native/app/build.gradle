@@ -1,3 +1,5 @@
+import java.net.URI
+
 plugins { id 'com.android.application' }
 def caspianServerUrl = project.findProperty('CASPIAN_SERVER_URL') ?: System.getenv('CASPIAN_SERVER_URL')
 if (!caspianServerUrl) throw new GradleException('CASPIAN_SERVER_URL is required; offline builds are disabled.')
