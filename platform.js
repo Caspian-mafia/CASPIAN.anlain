@@ -428,6 +428,7 @@ router.get('/payments/zarinpal/callback',asyncRoute(async(req,res)=>{
  });
  res.status(200).send('پرداخت تأیید شد و سکه‌ها به کیف پول افزوده شدند. می‌توانید به CASPIAN بازگردید.');
 }));
+router.use('/birthday',require('./birthday-api'));
 router.use((err,_req,res,_next)=>{
  console.error('CASPIAN platform API error:',err.message);
  if(!res.headersSent)res.status(500).json({error:'خطای داخلی؛ دوباره تلاش کنید'});
