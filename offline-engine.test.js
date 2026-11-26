@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test');
 const assert=require('node:assert/strict');
-const Engine=require('./offline-engine.js');
+const Engine=require('./offline/offline-engine.js');
 const names=['پدرخوانده','استراتژیست','جعل‌کننده','بازجو','مافیای سایه','فرمانده آشوب','قاتل زنجیره‌ای','کارآگاه ویژه','پزشک اعظم','محافظ سلطنتی','قاضی','هکر','خبرنگار','تک‌تیرانداز','شهروند بانفوذ','تحلیلگر'];
 function basePlayers(){return Array.from({length:16},(_,i)=>({id:'p'+i,name:'بازیکن '+i,bot:false,avatar:'avatar-fox'}));}
 function fixedGame(){
